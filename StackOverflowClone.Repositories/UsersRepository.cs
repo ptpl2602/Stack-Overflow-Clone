@@ -10,14 +10,14 @@ namespace StackOverflowClone.Repositories
     public interface IUsersRepository
     {
         void InsertUser(User user);
-        void UpdateUserDetail (User user);
+        void UpdateUserDetails (User user);
         void UpdateUserPassword(User user);
-        void DeleteUser (User user);
+        void DeleteUser (int userId);
         List<User> GetUsers();
         List<User> GetUserByEmailAndPasswd(string email, string passwd);
         List<User> GetUserByEmail (string email);
 
-        List<User> GetUserByUserID(int id);
+        List<User> GetUserByID(int id);
         int GetLatesUserID();
     }
     public class UsersRepository : IUsersRepository
@@ -35,7 +35,7 @@ namespace StackOverflowClone.Repositories
             _dbContext.SaveChanges();
         }
 
-        public void UpdateUserDetail (User user)
+        public void UpdateUserDetails (User user)
         {
             User updateUser = _dbContext.Users.FirstOrDefault(i => i.UserID == user.UserID);
             if (updateUser != null)
@@ -68,9 +68,9 @@ namespace StackOverflowClone.Repositories
             return users;
         }
 
-        public void DeleteUser(User user)
+        public void DeleteUser(int userId)
         {
-            User deleteUser = _dbContext.Users.FirstOrDefault(i => i.UserID == user.UserID);
+            User deleteUser = _dbContext.Users.FirstOrDefault(i => i.UserID == userId);
             if (deleteUser != null)
             {
                 _dbContext.Users.Remove(deleteUser);
@@ -84,7 +84,7 @@ namespace StackOverflowClone.Repositories
             return users;
         }
 
-        public List<User> GetUserByUserID(int id)
+        public List<User> GetUserByID(int id)
         {
             List<User> users = _dbContext.Users.Where(i => i.UserID == id).ToList();
             return users;

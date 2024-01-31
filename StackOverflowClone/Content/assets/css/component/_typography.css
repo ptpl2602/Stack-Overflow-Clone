@@ -1,0 +1,66 @@
+﻿.font-tag-mono {
+  font-family: "Cascadia Mono", "Segoe UI", monospace;
+  font-size: 1.3rem;
+  line-height: 1.7rem;
+  font-weight: 400;
+  color: #242729;
+}
+
+.font-tag-black600 {
+  font-size: 1.3rem;
+  color: #636B74;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Open Sans", "Helvetica Neue", sans-serif;
+  line-height: 1.7rem;
+}
+
+.font-tag-black600 {
+  font-size: 1.3rem;
+  color: #636B74;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.5rem;
+}
+
+.font-black13 {
+  font-size: 1.3rem;
+  color: #636B74;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Open Sans", "Helvetica Neue", sans-serif;
+  line-height: 1.7rem;
+  color: #242729;
+}
+
+.font-black26 {
+  font-size: 1.3rem;
+  color: #636B74;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 2.6rem;
+  line-height: 1.7rem;
+  color: #242729;
+  font-weight: 500;
+}
+
+.fc-orange {
+  color: #e7710c !important;
+}
+
+.fc-blue {
+  color: #1a75d1 !important;
+}
+
+.fc-blue-hover {
+  color: #1a75d1 !important;
+}
+.fc-blue-hover:hover {
+  color: #145ca3 !important;
+}
+
+.active {
+  color: #0c0d0e !important;
+  font-weight: 700 !important;
+  background-color: #f0f2f2;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Open Sans", "Helvetica Neue", sans-serif;
+}
+.active i {
+  color: #0c0d0e !important;
+  font-weight: 700 !important;
+}

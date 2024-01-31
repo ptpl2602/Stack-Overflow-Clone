@@ -1,0 +1,83 @@
+﻿[
+  {
+    "outputFile": "Content/assets/css/style.css",
+    "inputFile": "Content/assets/scss/style.scss",
+    "minify": {
+      "enabled": false
+    }
+  },
+  {
+    "outputFile": "Content/assets/css/_variables.css",
+    "inputFile": "Content/assets/scss/_variables.scss",
+    "minify": {
+      "enabled": false
+    }
+  },
+  {
+    "outputFile": "Content/assets/css/_reset.css",
+    "inputFile": "Content/assets/scss/_reset.scss",
+    "minify": {
+      "enabled": false
+    }
+  },
+  {
+    "outputFile": "Content/assets/css/_custom.css",
+    "inputFile": "Content/assets/scss/_custom.scss",
+    "minify": {
+      "enabled": false
+    }
+  },
+  {
+    "outputFile": "Content/assets/css/sections/body.css",
+    "inputFile": "Content/assets/scss/sections/body.scss",
+    "minify": {
+      "enabled": false
+    }
+  },
+  {
+    "outputFile": "Content/assets/css/sections/footer.css",
+    "inputFile": "Content/assets/scss/sections/footer.scss",
+    "minify": {
+      "enabled": false
+    }
+  },
+  {
+    "outputFile": "Content/assets/css/sections/header.css",
+    "inputFile": "Content/assets/scss/sections/header.scss",
+    "minify": {
+      "enabled": false
+    }
+  },
+  {
+    "outputFile": "Content/assets/css/component/_button.css",
+    "inputFile": "Content/assets/scss/component/_button.scss",
+    "minify": {
+      "enabled": false
+    }
+  },
+  {
+    "outputFile": "Content/assets/css/component/_mixins.css",
+    "inputFile": "Content/assets/scss/component/_mixins.scss",
+    "minify": {
+      "enabled": false
+    }
+  },
+  {
+    "outputFile": "Content/assets/css/component/_typography.css",
+    "inputFile": "Content/assets/scss/component/_typography.scss",
+    "minify": {
+      "enabled": false
+    }
+  },
+  {
+    "outputFile": "Content/assets/scss/component/_animation.css",
+    "inputFile": "Content/assets/css/component/_animation.scss",
+    "minify": {
+      "enabled": false
+    }
+  },
+  {
+    "outputFile": "Content/assets/scss/component/_animation.css",
+    "inputFile": "Content/assets/scss/component/_animation.scss"
+  }
+]

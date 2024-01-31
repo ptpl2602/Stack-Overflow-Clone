@@ -20,10 +20,12 @@ namespace StackOverflowClone.DomainModels
         public int ViewCount { get; set; }
 
         [ForeignKey("UserID")]
+        public User User { get; set; }
         public int UserID { get; set; }
 
-        [ForeignKey("CategoryID")]
         public int CategoryID { get; set; }
+        [ForeignKey("CategoryID")]
+        public Category Category { get; set; }
 
         public virtual List<Answer> Answers { get; set; }
     }

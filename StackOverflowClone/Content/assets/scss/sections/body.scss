@@ -1,0 +1,292 @@
+@use '../custom' as *;
+@use '../variables' as *;
+@use '../component/mixins' as *;
+
+.content-section {
+    margin-top: 5.3rem;
+    font-family: $font-primary !important;
+}
+
+.content-section-1 {
+    padding: 4.8rem;
+    position: relative;
+    text-align: center !important;
+
+    .content-intro {
+        background-color: $gray-focus;
+        border-radius: 0.8rem;
+        padding: 3.2rem 3.2rem 12.8rem 3.2rem;
+    }
+}
+
+.flex-alliitem > .intro-box {
+    flex-basis: 50%;
+}
+
+.intro-box {
+    margin: 1.6rem;
+
+    .intro-item {
+        border-radius: 0.8rem 0.8rem 0 0.8rem;
+        background-color: $orange-white;
+        padding: 2.4rem;
+        height: 100%;
+
+        svg {
+            margin-bottom: 1.6rem;
+
+            path {
+                fill: $primary-color;
+            }
+        }
+
+        h2 {
+            max-width: 31.6rem;
+            font-size: 1.9rem;
+        }
+
+        p {
+            margin-top: 2rem;
+            @include fontNormal();
+            color: #3b4045;
+
+            a {
+                @include fontNormal();
+                color: #3b4045;
+            }
+
+            a:hover {
+                color: $orange-dark;
+            }
+        }
+    }
+}
+
+.intro-box:last-child {
+
+    .intro-item {
+        background-color: $blue-white;
+        border-radius: 0.8rem 0.8rem 0.8rem 0;
+
+        svg {
+            margin-bottom: 1.6rem;
+
+            path {
+                fill: $secondary-color;
+            }
+        }
+    }
+}
+
+.box-arrow--left::after {
+    position: absolute;
+    content: "";
+    display: block;
+    border-radius: 0 0.5rem 0;
+    top: 99%;
+    left: 0;
+    clip-path: polygon(18px 0, 32px 0, 0 40px, 0 38px, 0 0, 18px 0);
+    background-color: $blue-white;
+    // transform: scale(-1);
+
+    width: 3.2rem;
+    height: 3.2rem;
+}
+
+.box-arrow--right::after {
+    position: absolute;
+    content: "";
+    display: block;
+    border-radius: 0 0.5rem 0;
+    top: 99%;
+    right: 0;
+    clip-path: polygon(18px 0, 32px 0, 0 40px, 0 38px, 0 0, 18px 0);
+    background-color: $orange-white;
+    transform: scaleX(-1);
+    width: 3.2rem;
+    height: 3.2rem;
+}
+
+// -------------------------------------- Đã login
+.left-sidebar {
+    width: 17rem;
+
+    .sidebar-menu {
+        // height: 100%;
+
+        padding: 0;
+        padding-top: 1.8rem;
+        max-height: calc(100vh - 5.3rem);
+        overflow-y: auto;
+    }
+
+    li {
+        padding: 0.4rem 0.8rem;
+        padding-left: 1rem;
+        list-style: none;
+
+        .sidebar-item {
+            text-decoration: none;
+            @include fontNormal();
+            color: $gray-black;
+        }
+
+        &:hover {
+            background-color: $gray-hover-sidebar;
+        }
+
+        &:hover i {
+            color: $gray-focus;
+        }
+
+        &:focus {
+            color: $gray-focus;
+            font-weight: 700;
+        }
+    }
+
+    i {
+        font-size: 1.5rem;
+        line-height: 2.6rem;
+        color: $gray-black;
+    }
+}
+
+// Custom scrollbar----------------------
+.sidebar-menu::-webkit-scrollbar {
+    width: 1rem;
+}
+
+.sidebar-menu::-webkit-scrollbar-track {
+    background-color: #fafafa;
+}
+
+.sidebar-menu::-webkit-scrollbar-thumb {
+    background-color: $gray-scrollbar;
+    border-radius: 5rem;
+}
+//-------------------------------
+
+.sidebar-item-content {
+    padding: 1rem 0.6rem 0 0.8rem;
+    margin-bottom: 1.6rem;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
+
+    p {
+        font-size: 1.2rem;
+        color: $gray-black;
+    }
+
+    .item-content-btn {
+        background-color: $primary-color;
+        color: $white;
+        width: 100%;
+        font-size: 1.2rem;
+        border: 0;
+        padding-top: 0.6rem;
+        padding-bottom: 0.5rem;
+        border-radius: 0.5rem;
+    }
+
+    .item-content-link {
+        color: $gray-font;
+        font-size: 1.2rem;
+        padding: 0.7rem;
+        width: 100%;
+    }
+}
+
+// --------------------------- List Question0-----------------------------------
+
+.list-question {
+    @include fontNormal();
+
+    .content-link-question {
+        @include customText($secondary-color, $blue-dark, 1.7rem, 2.2rem);
+        text-decoration: none;
+    }
+
+    .question-author {
+        font-size: 1.2rem;
+        line-height: 1.2rem;
+    }
+
+    p {
+        margin-bottom: 0.5rem;
+    }
+}
+
+// ------------------------- Note ------------------------------------
+.content-note-link {
+    text-decoration: none;
+    @include fontNormal();
+    color: $black;
+}
+
+
+//----------------------------Login --------------------------------
+.content-login {
+    padding: 2.4rem;
+    background-color: #f1f2f3;
+    width: 100%;
+    height: 100vh;
+
+    span {
+        color: $gray-black
+    }
+}
+
+.svg-icon {
+    fill: $secondary-color;
+}
+
+.intro-item-content {
+    @include fontNormal();
+    padding-left: 0.8rem;
+    color: $black;
+    font-size: 1.6rem;
+}
+
+.form-login {
+    background-color: $white;
+    padding: 2.4rem;
+    border-radius: 1rem;
+    // max-width: 31.6rem;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+    label {
+        @include fontNormal();
+        color: $gray-black;
+        font-weight: 700;
+        font-size: 1.5rem;
+    }
+
+    input {
+        padding: 0.8rem 0.9rem;
+        border: 0.1rem solid $gray-border;
+        @include fontNormal();
+    }
+
+    p {
+        font-size: 1.1rem;
+    }
+}
+
+#toggle-password {
+    position: absolute;
+    top: 4rem;
+    right: 1rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 100;
+}
+
+//----------------------Profile--------------------
+.avatar-frame {
+    border: 0.1rem solid $gray-border;
+    background-color: linear-gradient(to bottom, #636B74, white);
+    padding: 1.8rem;
+    border-radius: 0.6rem;
+    height: 20rem;
+    width: 18rem;
+}

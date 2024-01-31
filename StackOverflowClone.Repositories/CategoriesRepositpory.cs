@@ -4,16 +4,16 @@ using System.Linq;
 
 namespace StackOverflowClone.Repositories
 {
-    public interface ICategoriesRepositpory 
+    public interface ICategoriesRepository
     {
         void InsertCategory (Category category);
         void UpdateCategory (Category category);
-        void DeleteCategory (Category category);
+        void DeleteCategory (int categoryID);
         List<Category> GetCategories ();
-        List<Category> GetCategoriesById (int CategoryId);
+        List<Category> GetCategoryById (int CategoryId);
     }
 
-    public class CategoriesRepository : ICategoriesRepositpory
+    public class CategoriesRepository : ICategoriesRepository
     {
         StackOverflowCloneDbContext _dbContext;
         public CategoriesRepository()
@@ -27,7 +27,7 @@ namespace StackOverflowClone.Repositories
             return categories;
         }
 
-        public List<Category> GetCategoriesById(int CategoryId)
+        public List<Category> GetCategoryById(int CategoryId)
         {
             List<Category> categories= _dbContext.Categories.Where(i => i.CategoryID == CategoryId).ToList();
             return categories;
@@ -48,9 +48,9 @@ namespace StackOverflowClone.Repositories
                 _dbContext.SaveChanges();
             }
         }
-        public void DeleteCategory(Category category)
+        public void DeleteCategory(int categoryID)
         {
-            Category deleteCategory = _dbContext.Categories.FirstOrDefault(i => i.CategoryID == category.CategoryID);
+            Category deleteCategory = _dbContext.Categories.FirstOrDefault(i => i.CategoryID == categoryID);
             if (deleteCategory != null)
             {
                 _dbContext.Categories.Remove(deleteCategory);

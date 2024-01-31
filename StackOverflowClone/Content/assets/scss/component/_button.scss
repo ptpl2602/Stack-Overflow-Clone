@@ -1,0 +1,156 @@
+@use '../custom' as *;
+@use '../variables' as *;
+@use '../component/mixins' as *;
+
+.btn-outline-blue {
+    @include fontNormal();
+    @include customButton($secondary-color, $white, $secondary-color);
+    line-height: 1.5rem;
+
+    &:hover {
+        @include customButton($blue-dark, $blue-white, $secondary-color);
+    }
+
+    &:active {
+        @include customButton($blue-dark, $blue-white, $secondary-color);
+    }
+}
+
+.btn-inline-blue {
+    @include fontNormal();
+    @include customButton($white, $secondary-color, $secondary-color);
+    line-height: 1.5rem;
+
+    &:hover {
+        @include customButton($white, $blue-dark, $blue-dark);
+    }
+
+    &:active {
+        @include customButton($white, $blue-dark, $blue-dark);
+    }
+}
+
+.btn-inline-blue-full-width {
+    @include fontNormal();
+    @include customButton($white, $secondary-color, $secondary-color);
+    line-height: 1.5rem;
+    width: 100%;
+
+    &:hover {
+        @include customButton($white, $blue-dark, $blue-dark);
+    }
+
+    &:active {
+        @include customButton($white, $blue-dark, $blue-dark);
+    }
+}
+
+.btn-inline-orange {
+    @include fontNormal();
+    @include customButton($white, $primary-color, $primary-color);
+    line-height: 1.5rem;
+
+    &:hover {
+        @include customButton($white, $orange-dark, $orange-dark);
+    }
+
+    &:active {
+        @include customButton($white, $orange-dark, $orange-dark);
+    }
+}
+
+.btn-outline-orange {
+    @include fontNormal();
+    @include customButton($primary-color, $white, $primary-color);
+    line-height: 1.5rem;
+
+    &:hover {
+        @include customButton($orange-dark, $orange-white, $primary-color);
+    }
+
+    &:active {
+        @include customButton($orange-dark, $orange-white, $primary-color);
+    }
+}
+
+.nav-btn-bars {
+    padding: 0 1.6rem;
+    height: 100%;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+
+    i {
+        @include fontNormal();
+    }
+}
+
+.bg-orange-white {
+    background-color: $orange-white !important;
+}
+
+.bg-blue-white {
+    background-color: $blue-white !important;
+}
+
+.question-tags {
+    @include fontNormal();
+    font-size: 1.2rem;
+    color: $blue-dark;
+    text-decoration: none;
+    background-color: #ecf4fd;
+    padding: 0.5rem 0.7rem;
+    border-radius: 0.4rem;
+    margin-right: 0.4rem;
+
+    &:hover {
+        color: $purple;
+        background-color: $blue-white;
+    }
+}
+
+.btn-inline-orange-rounded {
+    @include fontNormal();
+    @include customButton($white, $primary-color, $primary-color);
+    line-height: 1.7rem;
+    border-radius: 2rem;
+    padding: 0.6rem 1.3rem;
+    font-weight: 400;
+
+    &:hover {
+        @include customButton($white, $orange-dark, $orange-dark);
+        border-radius: 2rem;
+        padding: 0.6rem 1.3rem;
+    }
+
+    &:active {
+        @include customButton($white, $orange-dark, $orange-dark);
+        padding: 0.6rem 1.3rem;
+        border-radius: 2rem;
+    }
+}
+
+.btn-normal-hover {
+    @include fontNormal();
+    color: $black;
+    line-height: 1.7rem;
+    font-weight: 400;
+    padding: 0.8rem 1.3rem;
+    border-radius: 10rem;
+
+    &:hover {
+        background-color: $gray-hover;
+        border-radius: 10rem;
+        padding: 0.6rem 1.3rem;
+    }
+}
+
+.btn-outline-black {
+    @include fontNormal();
+    @include customButton($gray-black, $white, $gray-font);
+    line-height: 1.4rem;
+    font-size: 1.2rem;
+    padding: 1rem;
+    margin: 0.3rem;
+}

@@ -1,0 +1,12 @@
+@use "reset";
+// @use 'custom';
+@use 'variables';
+
+@use 'component/animation';
+@use 'component/button';
+@use 'component/mixins';
+@use 'component/typography';
+
+@use 'sections/header.scss';
+@use 'sections/body.scss';
+@use 'sections/footer.scss';

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StackOverflowClone.ServiceLayer
 {
-    public class Class1
+    public static class MapperExtension
     {
     }
 }

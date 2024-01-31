@@ -1,0 +1,31 @@
+@use '../custom' as *;
+@use '../variables' as *;
+
+@mixin customButton($color, $bgColor, $borderColor) {
+    background-color: $bgColor;
+    color: $color;
+    text-align: center;
+    border-radius: 0.6rem;
+    padding: 0.8rem 1.04rem;
+    border: 0.1rem solid $borderColor;
+}
+
+@mixin fontNormal {
+    font-size: 1.3rem;
+    color: $gray-font;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+@mixin customText($color, $colorHover, $size, $lineHeight) {
+    color: $color;
+    font-size: $size;
+    line-height: $lineHeight;
+    &:hover {
+        color: $colorHover;
+    }
+}
+
+@mixin imgAvatar {
+    height: 2.4rem;
+    width: 2.4rem;
+}

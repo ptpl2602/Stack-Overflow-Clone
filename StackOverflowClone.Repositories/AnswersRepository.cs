@@ -11,7 +11,7 @@ namespace StackOverflowClone.Repositories
     {
         void InsertAnswer(Answer answer);
         void UpdateAnswer(Answer answer);
-        void DeleteAnswer(Answer answer);
+        void DeleteAnswer(int answerId);
         void UpdateAnswertVotesCount(int answerId, int userId, int value);
         List<Answer> GetAnswersByQuestionId(int questionId);
         List<Answer> GetAnswersByAnswerId (int answerId);
@@ -28,9 +28,9 @@ namespace StackOverflowClone.Repositories
             iVoteRepo = new VotesRepository();
             
         }
-        public void DeleteAnswer(Answer answer)
+        public void DeleteAnswer(int answerId)
         {
-            Answer deleteAnswer = _dbContext.Answers.FirstOrDefault(i => i.AnswerID == answer.AnswerID);
+            Answer deleteAnswer = _dbContext.Answers.FirstOrDefault(i => i.AnswerID == answerId);
             if(deleteAnswer != null)
             {
                 _dbContext.Answers.Remove(deleteAnswer);

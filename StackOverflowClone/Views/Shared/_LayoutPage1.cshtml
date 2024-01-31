@@ -1,0 +1,350 @@
+﻿@using System.Web.Optimization
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Description of the page less than 150 characters">
+    <title>@ViewBag.Title - Stack Overflow - Where Developers Learn, Share, & Build Careers</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="~/Content/assets/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/assets/node_modules/bootstrap-icons/font/bootstrap-icons.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="~/Content/assets/css/style.css">
+    @Styles.Render("~/Styles/bootstrap")
+    @Styles.Render("~/Styles/site")
+
+    <script src="~/Content/assets/javascript/animation.js"></script>
+    <script src="~/Scripts/jquery-3.7.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/umd/popper.min.js"></script>
+</head>
+<body>
+    @if (Session["CurrentUserName"] == null)
+    {
+        <header>
+            <nav class="navbar fixed-top navbar-expand-lg pb-0 pt-1 pe-3" style="border-top: 0.2rem solid #e7710c !important;">
+                <div class="nav-dropdown-menu">
+                    <div class="btn-group">
+                        <a href="#" class="nav-btn-bars px-1 me-3 text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false">
+                            <div class="icon-menu">
+                                <div class="icon-line"></div>
+                                <div class="icon-line"></div>
+                                <div class="icon-line"></div>
+                            </div>
+                        </a>
+                        <div class="nav-left-sidebar">
+                            <ul class="dropdown-menu ps-1">
+                                <li>
+                                    <a href="#" class="dropdown-item">
+                                        <i class="pe-1 bi bi-house-door-fill"></i>
+                                        <span>Home</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="dropdown-item">
+                                        <i class="pe-1 bi bi-patch-question-fill"></i>
+                                        <span>Questions</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="dropdown-item">
+                                        <i class="pe-1 bi bi-tags-fill"></i>
+                                        <span>Tags</span>
+                                    </a>
+                                </li>
+                                <li class="pb-4"></li>
+                                <li>
+                                    <a href="#" class="dropdown-item">
+                                        <i class="pe-1 bi bi-people-fill"></i>
+                                        <span>Users</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="dropdown-item">
+                                        <i class="pe-1 bi bi-briefcase-fill"></i>
+                                        <span>Companies</span>
+                                    </a>
+                                </li>
+                                <li class="pb-4"></li>
+                                <li class="d-flex justify-content-between">
+                                    <span class="fw-bold">COLLECTIVES</span>
+                                    <a href="#" class="icon-link icon-link-hover text-decoration-none text-secondary">
+                                        <i class="ps-5 fa-solid fa-plus" style="font-size:13px;"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="dropdown-item">
+                                        <i class="pe-1 fa-solid fa-sun"></i>
+                                        <span>Explore Collectives</span>
+                                    </a>
+                                </li>
+                                <li class="pb-4"></li>
+                                <li class="d-flex justify-content-between">
+                                    <span class="fw-bold">LABS</span>
+                                    <a href="#" class="icon-link icon-link-hover text-decoration-none text-secondary">
+                                        <i class="bi bi-info-circle-fill" style="font-size:13px;"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="dropdown-item">
+                                        <i class="pe-1 bi bi-chat-left-fill"></i>
+                                        <span>Discussions</span>
+                                    </a>
+                                </li>
+                                <p class="fw-bold mt-4 mb-2 ms-3" style="font-size:12px;">TEAMS</p>
+                                <div class="item-content">
+                                    <p class="fw-bold mb-0">Stack Overflow for Teams - </p>
+                                    <p>Start collaborating and sharing <br> organizational knowledge.</p>
+                                    <img src="https://cdn.sstatic.net/Img/teams/teams-illo-free-sidebar-promo.svg?v=47faa659a05e" width="139" height="114" alt="Teams">
+                                    <button class="item-content-btn">Create a free Team</button>
+                                    <a href="#" class="d-inline-flex justify-content-center align-items-center item-content-link text-decoration-none">Why Teams?</a>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <a href="/home/index" class="navbar-brand"><img src="~/Content/assets/img/logo-stackoverflow.png" alt="Stack Overflow" width="150" height="30"></a>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">Products</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">For Teams</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex nav-search-form" role="search">
+                        <div class="nav-search-input-wrap">
+                            <!-- <i class="fa-solid fa-magnifying-glass"></i> -->
+                            <input class="form-control ps-5 nav-search-input" type="search" maxlength="250" placeholder="Search..." aria-label="Search">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="nav-search-input-icon" height="18" width="18" viewBox="0 0 512 512"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" /></svg>
+                            <h2></h2>
+                            <div class="nav-search-hints">
+                                <div class="div-arrow"></div>
+                                <div class="nav-search-tag">
+                                    <div class="row">
+                                        <div class="col-6 mb-3">
+                                            <span class="font-tag-mono">[tag]</span>
+                                            <span class="font-tag-black600">search within a tag</span>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <span class="font-tag-mono">answers:0</span>
+                                            <span class="font-tag-black600">unanswered questions</span>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <span class="font-tag-mono">"words here</span>
+                                            <span class="font-tag-black600">exact phrase</span>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <span class="font-tag-mono">score:3</span>
+                                            <span class="font-tag-black600">posts with a 3+ score</span>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <span class="font-tag-mono">collective:"Name"</span>
+                                            <span class="font-tag-black600">collective content</span>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <span class="font-tag-mono">is:question</span>
+                                            <span class="font-tag-black600">type of post</span>
+                                        </div>
+                                        <div class="col-12">
+                                            <span class="font-tag-mono">isaccepted:yes</span>
+                                            <span class="font-tag-black600">search within status</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="nav-search-askQues d-flex justify-content-between align-items-center">
+                                    <button class="btn-inline-blue">Ask a question</button>
+                                    <a href="#" class="nav-link">Search help</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <a href="/account/login" class="btn-outline-blue mx-1 text-decoration-none">Log in</a>
+                    <a href="/account/signup" class="btn-inline-blue mx-1 text-decoration-none">Sign up</a>
+                </div>
+            </nav>
+        </header>
+
+        <section id="home" class="content-section">
+            <div class="container-fluid w-100">
+                @RenderBody()
+            </div>
+        </section>
+    }
+
+    @if (Session["CurrentUserName"] != null)
+    {
+        <header>
+            <nav class="navbar fixed-top navbar-expand-lg pb-0 pt-1 pe-3 mt-0" style="border-top: 0.2rem solid #e7710c !important;">
+                <a href="home/index2" class="navbar-brand"><img src="~/Content/assets/img/logo-stackoverflow.png" alt="Stack Overflow" width="150" height="30"></a>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">Products</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">For Teams</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex nav-search-form" role="search">
+                        <div class="nav-search-input-wrap">
+                            <input class="form-control ps-5 nav-search-input" type="search" maxlength="250" placeholder="Search..." aria-label="Search">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="nav-search-input-icon" height="18" width="18" viewBox="0 0 512 512"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" /></svg>
+                            <h2></h2>
+                            <div class="nav-search-hints">
+                                <div class="div-arrow"></div>
+                                <div class="nav-search-tag">
+                                    <div class="row">
+                                        <div class="col-6 mb-3">
+                                            <span class="font-tag-mono">[tag]</span>
+                                            <span class="font-tag-black600">search within a tag</span>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <span class="font-tag-mono">answers:0</span>
+                                            <span class="font-tag-black600">unanswered questions</span>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <span class="font-tag-mono">"words here</span>
+                                            <span class="font-tag-black600">exact phrase</span>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <span class="font-tag-mono">score:3</span>
+                                            <span class="font-tag-black600">posts with a 3+ score</span>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <span class="font-tag-mono">collective:"Name"</span>
+                                            <span class="font-tag-black600">collective content</span>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <span class="font-tag-mono">is:question</span>
+                                            <span class="font-tag-black600">type of post</span>
+                                        </div>
+                                        <div class="col-12">
+                                            <span class="font-tag-mono">isaccepted:yes</span>
+                                            <span class="font-tag-black600">search within status</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="nav-search-askQues d-flex justify-content-between align-items-center">
+                                    <button class="btn-inline-blue">Ask a question</button>
+                                    <a href="#" class="nav-link">Search help</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <a href="/account/profile" class="mx-1 text-decoration-none nav-link-profile">
+                        <img class="img-avatar me-2" src="https://www.gravatar.com/avatar/4bf8226f1b18a595958037b0e6f221c4?s=48&d=identicon&r=PG" alt="Default Avatar">
+                        @Session["CurrentUserName"]
+                    </a>
+                </div>
+            </nav>
+        </header>
+        <section id="home" class="content-section">
+            <div class="container-fluid w-100">
+                <div class="row">
+                    <div class="col-2 px-0">
+                        <div class="left-sidebar">
+                            <ul class="sidebar-menu">
+                                <li class="active">
+                                    <a href="#" class="sidebar-item">
+                                        <i class="pe-1 bi bi-house-door-fill"></i>
+                                        <span>Home</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="sidebar-item">
+                                        <i class="pe-1 bi bi-patch-question-fill"></i>
+                                        <span>Questions</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="sidebar-item">
+                                        <i class="pe-1 bi bi-tags-fill"></i>
+                                        <span>Tags</span>
+                                    </a>
+                                </li>
+                                <li class="pb-4"></li>
+                                <li>
+                                    <a href="#" class="sidebar-item">
+                                        <i class="pe-1 bi bi-bookmark-fill"></i>
+                                        <span>Saves</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="sidebar-item">
+                                        <i class="pe-1 bi bi-people-fill"></i>
+                                        <span>Users</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="sidebar-item">
+                                        <i class="pe-1 bi bi-briefcase-fill"></i>
+                                        <span>Companies</span>
+                                    </a>
+                                </li>
+                                <li class="pb-4"></li>
+                                <li class="d-flex justify-content-between">
+                                    <span class="fw-bold">COLLECTIVES</span>
+                                    <a href="#" class="icon-link icon-link-hover text-decoration-none text-secondary">
+                                        <i class="ps-5 fa-solid fa-plus" style="font-size:13px;"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="sidebar-item">
+                                        <i class="pe-1 fa-solid fa-sun"></i>
+                                        <span>Explore Collectives</span>
+                                    </a>
+                                </li>
+                                <li class="pb-4"></li>
+                                <li class="d-flex justify-content-between">
+                                    <span class="fw-bold">LABS</span>
+                                    <a href="#" class="icon-link icon-link-hover text-decoration-none text-secondary">
+                                        <i class="bi bi-info-circle-fill" style="font-size:13px;"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="sidebar-item">
+                                        <i class="pe-1 bi bi-chat-left-fill"></i>
+                                        <span>Discussions</span>
+                                    </a>
+                                </li>
+                                <p class="fw-bold mt-4 mb-2 ps-2" style="font-size:12px;">TEAMS</p>
+                                <div class="sidebar-item-content">
+                                    <p class="fw-bold mb-0">Stack Overflow for Teams - </p>
+                                    <p>Start collaborating and sharing <br> organizational knowledge.</p>
+                                    <img src="https://cdn.sstatic.net/Img/teams/teams-illo-free-sidebar-promo.svg?v=47faa659a05e" width="139" height="114" alt="Teams">
+                                    <button class="item-content-btn">Create a free Team</button>
+                                    <a href="#" class="d-inline-flex justify-content-center align-items-center item-content-link text-decoration-none">Why Teams?</a>
+                                </div>
+                                <button type="button" class="btn-outline-blue text-decoration-none fs-5 px-2 ms-2 py-3 mb-2"
+                                        data-bs-toggle="popover" data-bs-container="body"
+                                        data-bs-placement="top" data-bs-custom-class="custom-popover"
+                                        data-bs-title="Stack Overflow for Teams has its own domain!"
+                                        data-bs-content="You can now access your Teams at stackoverflowteams.com. Teams no longer appear in the left sidebar on stackoverflow.com. Check your email to learn more about these changes.">
+                                    Looking for your Teams?
+                                </button>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-10" style="padding: 24px 24px 24px 0;">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+</body>
+</html>

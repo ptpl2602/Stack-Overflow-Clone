@@ -14,13 +14,15 @@ namespace StackOverflowClone.DomainModels
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int AnswerID { get; set; }
         public string AnswerText { get; set; }
-        public DateTime AnswerDateAndTime { get; set; }
+        public DateTime AnswerDataAndTime { get; set; }
         public int VoteCount { get; set; }
 
-        [ForeignKey("UserID")]
         public int UserID { get; set; }
-        [ForeignKey("QuestionID")]
+        [ForeignKey("UserID")]
+        public User User { get; set; }
         public int QuestionID { get; set; }
+        [ForeignKey("QuestionID")]
+        public Question Question { get; set; }
         public virtual List<Vote> Votes { get; set; }
     }
 }

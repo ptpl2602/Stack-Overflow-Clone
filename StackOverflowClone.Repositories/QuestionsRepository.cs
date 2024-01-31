@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +15,7 @@ namespace StackOverflowClone.Repositories
         void UpdateQuestionVoteCount (int id, int value);
         void UpdateQuestionAnswersCount(int id, int value);
         void UpdateQuestionViewsCount (int id, int value);
-        void DeleteQuestion (Question question);
+        void DeleteQuestion (int questionId);
         List<Question> GetQuestions ();
         List<Question> GetQuestionsById (int questionId);
     }
@@ -25,9 +26,9 @@ namespace StackOverflowClone.Repositories
         {
             _dbContext = new StackOverflowCloneDbContext();
         }
-        public void DeleteQuestion(Question question)
+        public void DeleteQuestion(int questionId)
         {
-            Question deleteQuestion = _dbContext.Questions.FirstOrDefault(i => i.QuestionID == question.QuestionID);
+            Question deleteQuestion = _dbContext.Questions.FirstOrDefault(i => i.QuestionID == questionId);
             if(deleteQuestion != null)
             {
                 _dbContext.Questions.Remove(deleteQuestion);
@@ -37,7 +38,11 @@ namespace StackOverflowClone.Repositories
 
         public List<Question> GetQuestions()
         {
-            List<Question> questions = _dbContext.Questions.ToList();
+            List<Question> questions = _dbContext.Questions
+                .Include(i => i.Category)
+                .Include(i => i.User)
+                .OrderByDescending(i => i.QuestionDateAndTime)
+                .ToList();
             return questions;
         }
 
