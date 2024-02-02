@@ -14,5 +14,8 @@ namespace StackOverflowClone.ViewModels
         public int CategoryID { get; set; }
         [Required]
         public string CategoryName { get; set; }
+        [Required]
+        public string CategoryDescription { get; set; }
+        public int QuestionCount { get; set; }
     }
 }

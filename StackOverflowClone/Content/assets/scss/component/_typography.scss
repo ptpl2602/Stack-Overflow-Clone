@@ -21,9 +21,22 @@
     line-height: 1.5rem;
 }
 
+.font-tag12 {
+    @include fontNormal();
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+}
+
 .font-black13 {
     @include fontNormal();
     line-height: 1.7rem;
+    color: $black;
+}
+
+.font-black15 {
+    @include fontNormal();
+    font-size: 1.5rem;
+    line-height: 2rem;
     color: $black;
 }
 
@@ -51,7 +64,7 @@
     }
 }
 
-.active {
+#active {
     color: $gray-focus !important;
     font-weight: 700 !important;
     background-color: $gray-hover-sidebar;

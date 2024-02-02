@@ -282,11 +282,28 @@
   line-height: 1.5rem;
 }
 
+.font-tag12 {
+  font-size: 1.3rem;
+  color: #636B74;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+}
+
 .font-black13 {
   font-size: 1.3rem;
   color: #636B74;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Open Sans", "Helvetica Neue", sans-serif;
   line-height: 1.7rem;
+  color: #242729;
+}
+
+.font-black15 {
+  font-size: 1.3rem;
+  color: #636B74;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 1.5rem;
+  line-height: 2rem;
   color: #242729;
 }
 
@@ -315,13 +332,13 @@
   color: #145ca3 !important;
 }
 
-.active {
+#active {
   color: #0c0d0e !important;
   font-weight: 700 !important;
   background-color: #f0f2f2;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Open Sans", "Helvetica Neue", sans-serif;
 }
-.active i {
+#active i {
   color: #0c0d0e !important;
   font-weight: 700 !important;
 }
@@ -840,4 +857,78 @@
   border-radius: 0.6rem;
   height: 20rem;
   width: 18rem;
+}
+
+.form-edit-profile {
+  background-color: #f8fbfa;
+  padding: 2.4rem;
+  border-radius: 1rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.form-edit-profile label {
+  font-size: 1.3rem;
+  color: #636B74;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Open Sans", "Helvetica Neue", sans-serif;
+  color: #3b4045;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+.form-edit-profile input {
+  height: 3.3rem;
+  padding: 0.78rem 0.9rem;
+  border: 0.1rem solid #babfc5;
+  font-size: 1.3rem;
+  color: #636B74;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Open Sans", "Helvetica Neue", sans-serif;
+  color: #242729;
+  border-radius: 0.6rem;
+}
+
+.content-filter-form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-shrink: 10000;
+  flex-grow: 1;
+}
+.content-filter-form .content-search-input-wrap {
+  flex-grow: 1;
+  height: 3.6rem;
+}
+.content-filter-form .content-search-input-wrap .content-search-input-icon {
+  position: absolute;
+  top: 25%;
+  fill: #636B74;
+  margin-left: 0.8rem;
+}
+.content-filter-form .content-search-input-wrap input {
+  width: 100%;
+  height: 100%;
+  font-size: 1.3rem;
+  color: #636B74;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Open Sans", "Helvetica Neue", sans-serif;
+  color: #242729;
+  border: 0.1rem solid #babfc5;
+  border-radius: 0.6rem;
+  padding: 0.7rem 0.9rem 0.7rem 3.4rem;
+}
+.content-filter-form.focus {
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.15);
+}
+
+.content-search-input-wrap {
+  position: relative;
+}
+
+.content-tags-details {
+  border: 0.1rem solid #babfc5;
+  border-radius: 0.6rem;
+  padding: 1.6rem 1.2rem 1.2rem 1.2rem;
+}
+
+.content-tags-description {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 4;
 }

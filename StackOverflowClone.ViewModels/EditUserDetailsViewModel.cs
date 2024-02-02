@@ -10,6 +10,8 @@ namespace StackOverflowClone.ViewModels
 {
     public class EditUserDetailsViewModel
     {
+
+        public int UserID { get; set; }
         [Required]
         [RegularExpression(@"(\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,6})")]    //Bắt đầu là 1 chuỗi ký tự 'word', theo sau là @, sau đó là 1 phần domain hợp lệ với 1 dấu . giữa tên miền và domain --> Email hợp lệ
         public string Email { get; set; }

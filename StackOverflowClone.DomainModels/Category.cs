@@ -14,5 +14,9 @@ namespace StackOverflowClone.DomainModels
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CategoryID { get; set; }
         public string CategoryName { get; set; }
+        public string CategoryDescription { get; set; }
+
+        [NotMapped]
+        public int QuestionCount { get; set; }
     }
 }

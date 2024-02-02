@@ -1,0 +1,55 @@
+﻿@model StackOverflowClone.ViewModels.EditUserDetailsViewModel
+
+@{
+    ViewBag.Title = "Edit Profile";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<h1 class="text-center font-black26 mt-3 mb-5">Edit Your Profile</h1>
+<form novalidate="novalidate" action="/account/changeprofile" method="post" class="needs-validation form-login mb-5">
+    @Html.AntiForgeryToken()
+    <div class="d-flex flex-column align-items-start mb-4">
+        <label for="display-name" class="form-label">Display name</label>
+        <input type="text" class="form-control font-tag-black600" required="required" name="Name" pattern="^[a-zA-Z ]*$" id="display-name" autofocus="autofocus" value="@Model.Name">
+        <div class="valid-feedback font-note">
+            Looks good!
+        </div>
+        <div class="invalid-feedback font-note">
+            Please enter display name.
+        </div>
+    </div>
+    <div class="d-flex flex-column align-items-start mb-4">
+        <label for="email" class="form-label">Email</label>
+        @Html.HiddenFor(i => i.Email)
+        <input type="email" class="form-control font-tag-black600" name="Email" required="required" id="email" value="@Model.Email" disabled readonly>
+    </div>
+    <div class="d-flex flex-column align-items-start mb-4">
+        <label for="phone-number" class="form-label">Phone number</label>
+        <input type="text" class="form-control font-tag-black600" required="required" name="PhoneNumber"
+               pattern="^(0|\+84)(\s|\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\d)(\s|\.)?(\d{3})(\s|\.)?(\d{3})$"
+               id="phone-number" value="@Model.PhoneNumber">
+        <div class="valid-feedback font-note">
+            Looks good!
+        </div>
+        <div class="invalid-feedback font-note">
+            Please enter phone number.
+        </div>
+    </div>
+    <div class="d-flex align-items-center justify-content-center mb-2 pt-3">
+        <button type="submit" class="btn-inline-blue text-decoration-none mx-2">Save Profile</button>
+        <a href="/account/profile" class="btn-outline-blue text-decoration-none mx-2">Cancel</a>
+    </div>
+</form>
+
+<script>
+    $("a[href='/account/profile']").attr("id", "active")
+    $(document).on("submit", ".needs-validation", validate);
+    $(".needs-validation input").blur(validate);
+
+    function validate(e) {
+        if ($(".needs-validation")[0].checkValidity() == false || $(".email-exist").text() != "") {
+            e.preventDefault();
+        }
+        $(".needs-validation")[0].classList.add('was-validated');
+    }
+</script>

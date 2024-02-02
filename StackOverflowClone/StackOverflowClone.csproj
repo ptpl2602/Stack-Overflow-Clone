@@ -169,6 +169,7 @@
     <Content Include="Content\assets\fonts\source-sans-pro\SIL Open Font License.txt" />
     <Content Include="Content\assets\img\logo-stackoverflow.png" />
     <Content Include="Content\assets\img\nav-teams.png" />
+    <Content Include="Content\assets\img\stack-overflow-color.png" />
     <Content Include="Content\assets\img\stack-overflow.png" />
     <Content Include="Content\assets\javascript\animation.js" />
     <Content Include="Content\assets\node_modules\%40popperjs\core\dist\cjs\enums.js" />
@@ -2888,7 +2889,6 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AllQuestionsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -2913,11 +2913,14 @@
     <Content Include="Views\Shared\_LayoutPage1.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\AllQuestions\AllQuestions.cshtml" />
     <Content Include="Views\Account\SignUp.cshtml" />
     <Content Include="Views\Home\Index2.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Profile.cshtml" />
+    <Content Include="Views\Account\ChangeProfile.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Shared\_LayoutPage2.cshtml" />
+    <Content Include="Views\Home\Tags.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2927,7 +2930,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Register\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\StackOverflowClone.DomainModels\StackOverflowClone.DomainModels.csproj">

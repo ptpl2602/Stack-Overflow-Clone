@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Stack Overflow";
-    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
 }
 
 <div class="row">
@@ -179,3 +179,7 @@
         </div>
     </div>
 </div>
+
+<script>
+    $("a[href='/home/index2']").parent().attr('id', 'active')
+</script>

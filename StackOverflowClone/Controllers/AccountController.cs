@@ -91,5 +91,75 @@ namespace StackOverflowClone.Controllers
         {
             return View();
         }
+
+        public ActionResult Logout()
+        {
+            Session.Abandon();      //Destroy all object in session include that session
+            return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult ChangeProfile()
+        {
+            int uid = Convert.ToInt32(Session["CurrentUserID"]);
+            UserViewModel userViewModel = this.iUserService.GetUsersByID(uid);
+            EditUserDetailsViewModel editUserViewModel = new EditUserDetailsViewModel()
+            {
+                UserID = userViewModel.UserID,
+                Name = userViewModel.Name,
+                PhoneNumber = userViewModel.PhoneNumber,
+                Email = userViewModel.Email,
+            };
+
+            return View(editUserViewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangeProfile(EditUserDetailsViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                viewModel.UserID = Convert.ToInt32(Session["CurrentUserID"]);
+                this.iUserService.UpdateUserDetails(viewModel);
+                Session["CurrentUserName"] = viewModel.Name;
+                return RedirectToAction("Index2", "Home");
+            }
+            else
+            {
+                ModelState.AddModelError("x", "Invalid Data");
+                return View(viewModel);
+            }
+        }
+
+        public ActionResult ChangePassword()
+        {
+            int uid = Convert.ToInt32(Session["CurrentUserID"]);
+            UserViewModel userViewModel = this.iUserService.GetUsersByID(uid);
+            EditUserPasswordViewModel editUserViewModel = new EditUserPasswordViewModel()
+            {
+                UserID = userViewModel.UserID,
+                Email = userViewModel.Email,
+                Password = userViewModel.Password,
+            };
+
+            return View(editUserViewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangePassword(EditUserPasswordViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                viewModel.UserID = Convert.ToInt32(Session["CurrentUserID"]);
+                this.iUserService.UpdateUserPassword(viewModel);
+                return RedirectToAction("Profile", "Account");
+            }
+            else
+            {
+                ModelState.AddModelError("x", "Invalid Data");
+                return View(viewModel);
+            }
+        }
     }
 }

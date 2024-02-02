@@ -67,6 +67,10 @@
       <Project>{1338f3bd-1379-4121-8811-a04246900a9e}</Project>
       <Name>StackOverflowClone.DomainModels</Name>
     </ProjectReference>
+    <ProjectReference Include="..\StackOverflowClone.ViewModels\StackOverflowClone.ViewModels.csproj">
+      <Project>{f649f4e0-a02b-4e08-a86e-2dba26ec3df9}</Project>
+      <Name>StackOverflowClone.ViewModels</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

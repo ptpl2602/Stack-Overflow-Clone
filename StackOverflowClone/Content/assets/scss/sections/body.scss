@@ -290,3 +290,82 @@
     height: 20rem;
     width: 18rem;
 }
+
+.form-edit-profile {
+    background-color: $white;
+    padding: 2.4rem;
+    border-radius: 1rem;
+    // max-width: 31.6rem;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+    label {
+        @include fontNormal();
+        color: $gray-black;
+        font-weight: 700;
+        font-size: 1.5rem;
+    }
+
+    input {
+        height: 3.3rem;
+        padding: 0.78rem 0.9rem;
+        border: 0.1rem solid $gray-border2;
+        @include fontNormal();
+        color: $black;
+        border-radius: 0.6rem;
+    }
+}
+
+
+//----------------Tags------------------
+.content-filter-form {
+    width: 100%;
+    // padding: 1rem 0.8rem;
+    display: flex;
+    align-items: center;
+    flex-shrink: 10000;
+    flex-grow: 1;
+
+    .content-search-input-wrap {
+        // position: relative;
+        flex-grow: 1;
+        height: 3.6rem;
+
+        .content-search-input-icon {
+            position: absolute;
+            top: 25%;
+            fill: $gray-font;
+            margin-left: 0.8rem;
+        }
+
+        input {
+            width: 100%;
+            height: 100%;
+            @include fontNormal();
+            color: $black;
+            border: 0.1rem solid $gray-border2;
+            border-radius: 0.6rem;
+            padding: 0.7rem 0.9rem 0.7rem 3.4rem;
+        }
+    }
+
+    &.focus {
+        box-shadow: 0 3px 4px rgba(0, 0, 0, 0.15);
+    }
+}
+
+.content-search-input-wrap {
+    position: relative;
+}
+
+.content-tags-details {
+    border: 0.1rem solid $gray-border2;
+    border-radius: 0.6rem;
+    padding: 1.6rem 1.2rem 1.2rem 1.2rem;
+}
+
+.content-tags-description {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 4;
+}
