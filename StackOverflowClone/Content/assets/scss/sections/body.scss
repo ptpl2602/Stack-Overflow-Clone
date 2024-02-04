@@ -216,6 +216,13 @@
     }
 }
 
+.content-question-description {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+}
+
 // ------------------------- Note ------------------------------------
 .content-note-link {
     text-decoration: none;

@@ -785,6 +785,13 @@
   margin-bottom: 0.5rem;
 }
 
+.content-question-description {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+}
+
 .content-note-link {
   text-decoration: none;
   font-size: 1.3rem;
