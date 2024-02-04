@@ -2890,6 +2890,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\QuestionsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2921,6 +2922,9 @@
     <Content Include="Views\Account\ChangePassword.cshtml" />
     <Content Include="Views\Shared\_LayoutPage2.cshtml" />
     <Content Include="Views\Home\Tags.cshtml" />
+    <Content Include="Views\Home\Questions.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
+    <Content Include="Views\Questions\View.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

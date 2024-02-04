@@ -1,0 +1,103 @@
+﻿@model List<StackOverflowClone.ViewModels.QuestionViewModel>
+
+@{
+    ViewBag.Title = "Search";
+
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<div class="row">
+    <div class="col-9">
+        <div class="row">
+            <div class="col-10">
+                <h1 class="fw-normal" style="font-size: 30px;">Search Result For [@ViewBag.str]</h1>
+            </div>
+            <div class="col-2">
+                @if (Session["CurrentUserName"] == null)
+                {
+                    <a href="/account/login" class="btn-inline-blue text-decoration-none">Ask Question</a>
+                }
+                @if (Session["CurrentUserName"] != null)
+                {
+                    <a href="/question/addquestion" class="btn-inline-blue text-decoration-none">Ask Question</a>
+
+                }
+            </div>
+        </div>
+        <div class="list-question mt-5">
+            <hr>
+            @foreach (var i in Model)
+            {
+                <div class="row">
+                    <div class="col-2 text-end ps-0">
+                        <p style="color: #242729;">@i.VotesCount vote</p>
+                        <p>@i.AnswersCount answers</p>
+                        <p>@i.ViewsCount views</p>
+                    </div>
+                    <div class="col-10">
+                        <div class="row">
+                            <div class="col-12">
+                                <a href="/questions/view/@i.QuestionID" class="content-link-question">@i.QuestionName</a><br />
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-8">
+                                <a href="/categories/view/@i.CategoryID" class="question-tags">@i.Category.CategoryName</a> <a href="#" class="question-tags">HTML</a>
+                            </div>
+                            <div class="col-4">
+                                <span class="question-author">@i.User.Name @i.QuestionDateAndTime</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+            }
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="card border-warning-subtle">
+            <div class="card-header bg-warning-subtle fw-bold fs-5 py-3 border-warning-subtle">
+                The Overflow Blog
+            </div>
+            <div class="card-body bg-warning bg-opacity-10 border-warning-subtle py-4">
+                <a href="#" class="content-note-link">
+                    <i class="bi bi-pen pe-2"></i>
+                    Sending bugs back in time
+                </a>
+            </div>
+        </div>
+        <div class="card border-warning-subtle">
+            <div class="card-header bg-warning-subtle fs-5 fw-bold py-3  border-warning-subtle">
+                Featured on Meta
+            </div>
+            <div class="card-body bg-warning bg-opacity-10 py-4">
+                <a href="#" class="content-note-link">
+                    <i class="bi bi-chat-left pe-2"></i>
+                    Sites can now request to enable a banner to warn about their policy on AI-generated content
+                </a> <br>
+                <a href="#" class="content-note-link">
+                    <img src="~/Content/assets/img/stack-overflow.png" class="me-2" alt="Icon Stack Overfow" style="width: 12px; height: 12px;">
+                    Temporary policy: Generative AI (e.g., ChatGPT) is banned
+                </a> <br>
+                <a href="#" class="content-note-link">
+                    <img src="~/Content/assets/img/stack-overflow.png" class="me-2" alt="Icon Stack Overfow" style="width: 12px; height: 12px;">
+                    January 2024 post from Ryan Polk, Chief Product Officer
+                </a>
+            </div>
+        </div>
+
+        <div class="mt-4 card">
+            <div class="card-header fs-4 font-tag-black600 py-3 bg-secondary bg-opacity-10">
+                Custom Filters
+            </div>
+            <div class="card-body py-4">
+                <a href="#" class="text-decoration-none font-tag-black600 text-primary">Create a custom filter</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $("a[href='/allquestions']").parent().attr('id', 'active')
+</script>

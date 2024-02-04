@@ -15,6 +15,8 @@ namespace StackOverflowClone.ViewModels
         [Required]
         public string QuestionName { get; set; }
         [Required]
+        public string QuestionContent { get; set; }
+        [Required]
         public DateTime QuestionDateAndTime { get; set; }
         [Required]
         public int UserID { get; set; }

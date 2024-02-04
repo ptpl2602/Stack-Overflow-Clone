@@ -14,6 +14,7 @@ namespace StackOverflowClone.DomainModels
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int QuestionID { get; set; }
         public string QuestionName { get; set; }
+        public string QuestionContent { get; set; }
         public DateTime QuestionDateAndTime { get; set; }
         public int VoteCount { get; set; }
         public int AnswerCount { get; set; }

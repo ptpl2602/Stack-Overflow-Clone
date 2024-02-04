@@ -15,8 +15,6 @@ namespace StackOverflowClone.ServiceLayer
         void InsertCategory(CategoryViewModel viewModel);
         void UpdateCategory(CategoryViewModel viewModel);
         void DeleteCategory(int categoryID);
-        int GetQuestionQuantityByCategory(int categoryId);
-        List<CategoryViewModel> GetCategoriesWithQuestionCount();
         List<CategoryViewModel> GetCategories();
         CategoryViewModel GetCategoryById(int CategoryId);
     }
@@ -66,27 +64,6 @@ namespace StackOverflowClone.ServiceLayer
                 IMapper mapper = config.CreateMapper();
                 viewModel = mapper.Map<Category, CategoryViewModel>(category);
             }
-            return viewModel;
-        }
-
-        public int GetQuestionQuantityByCategory(int categoryId)
-        {
-            return iCategoriesRepo.GetQuestionQuantityByCategory(categoryId);
-        }
-
-        public List<CategoryViewModel> GetCategoriesWithQuestionCount()
-        {
-            List<Category> categories = iCategoriesRepo.GetCategoriesWithQuestionCount();
-            var config = new MapperConfiguration(i => { i.CreateMap<Category, CategoryViewModel>(); i.IgnoreUnmapped(); });
-            IMapper mapper = config.CreateMapper();
-
-            List<CategoryViewModel> viewModel = mapper.Map<List<Category>, List<CategoryViewModel>>(categories);
-
-            foreach (var category in viewModel)
-            {
-                category.QuestionCount = iCategoriesRepo.GetQuestionQuantityByCategory(category.CategoryID);
-            }
-
             return viewModel;
         }
     }

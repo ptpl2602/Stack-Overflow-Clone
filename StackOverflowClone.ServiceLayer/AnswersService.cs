@@ -18,7 +18,7 @@ namespace StackOverflowClone.ServiceLayer
         List<AnswerViewModel> GetAnswersByQuestionId(int questionId);
         AnswerViewModel GetAnswersByAnswerId(int answerId);
     }
-    public class AnswersService
+    public class AnswersService : IAnswersService
     {
         IAnswerRepository iAnswerRepo;
         IVotesRepository iVoteRepo;

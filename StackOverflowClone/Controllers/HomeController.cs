@@ -10,7 +10,6 @@ namespace StackOverflowClone.Controllers
 {
     public class HomeController : Controller
     {
-
         private IQuestionsService iQuestionService;
         private ICategoriesService iCategoryService;
      
@@ -34,10 +33,25 @@ namespace StackOverflowClone.Controllers
 
         }
 
+        [Route("tags")]
         public ActionResult Tags()
         {
             List<CategoryViewModel> listTags = this.iCategoryService.GetCategories();
             return View(listTags);
+        }
+
+        [Route("allquestions")]
+        public ActionResult Questions()
+        {
+            List<QuestionViewModel> listQuestions = this.iQuestionService.GetQuestions();
+            return View(listQuestions);
+        }
+
+        public ActionResult Search(string str)
+        {
+            List<QuestionViewModel> listQuestions = this.iQuestionService.GetQuestions().Where(i => i.QuestionName.ToLower().Contains(str.ToLower()) || i.Category.CategoryName.ToLower().Contains(str.ToLower())).ToList();
+            ViewBag.str = str;
+            return View(listQuestions);
         }
     }
 }

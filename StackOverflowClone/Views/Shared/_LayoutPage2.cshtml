@@ -26,7 +26,14 @@
 <body>
     <header>
         <nav class="navbar fixed-top navbar-expand-lg pb-0 pt-1 pe-3 mt-0" style="border-top: 0.2rem solid #e7710c !important;">
-            <a href="/home/index2" class="navbar-brand"><img src="~/Content/assets/img/logo-stackoverflow.png" alt="Stack Overflow" width="150" height="30"></a>
+            @if (Session["CurrentUserName"] == null)
+            {
+                <a href="/home/index" class="navbar-brand"><img src="~/Content/assets/img/logo-stackoverflow.png" alt="Stack Overflow" width="150" height="30"></a>
+            }
+            @if (Session["CurrentUserName"] != null)
+            {
+                <a href="/home/index2" class="navbar-brand"><img src="~/Content/assets/img/logo-stackoverflow.png" alt="Stack Overflow" width="150" height="30"></a>
+            }
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
@@ -39,9 +46,9 @@
                         <a class="nav-link" aria-current="page" href="#">For Teams</a>
                     </li>
                 </ul>
-                <form class="d-flex nav-search-form" role="search">
+                <form class="d-flex nav-search-form" role="search" action="/home/search">
                     <div class="nav-search-input-wrap">
-                        <input class="form-control ps-5 nav-search-input" type="search" maxlength="250" placeholder="Search..." aria-label="Search">
+                        <input class="form-control ps-5 nav-search-input" type="search" maxlength="250" placeholder="Search..." aria-label="Search" name="str">
                         <svg xmlns="http://www.w3.org/2000/svg" class="nav-search-input-icon" height="18" width="18" viewBox="0 0 512 512"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" /></svg>
                         <h2></h2>
                         <div class="nav-search-hints">
@@ -85,10 +92,20 @@
                         </div>
                     </div>
                 </form>
-                <a href="/account/profile" class="mx-1 text-decoration-none nav-link-profile">
-                    <img class="img-avatar me-2" src="https://www.gravatar.com/avatar/4bf8226f1b18a595958037b0e6f221c4?s=48&d=identicon&r=PG" alt="Default Avatar">
-                    @Session["CurrentUserName"]
-                </a>
+                @if (Session["CurrentUserName"] == null)
+                {
+                    <a href="/account/login" class="btn-outline-blue fw-normal mx-1 text-decoration-none">Log in</a>
+                    <a href="/account/signup" class="btn-inline-blue fw-normal mx-1 text-decoration-none">Sign up</a>
+                }
+
+
+                @if (Session["CurrentUserName"] != null)
+                {
+                    <a href="/account/profile" class="mx-1 text-decoration-none nav-link-profile">
+                        <img class="img-avatar me-2" src="https://www.gravatar.com/avatar/4bf8226f1b18a595958037b0e6f221c4?s=48&d=identicon&r=PG" alt="Default Avatar">
+                        @Session["CurrentUserName"]
+                    </a>
+                }
             </div>
         </nav>
     </header>
@@ -105,13 +122,13 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="/home/questions" class="sidebar-item">
+                                <a href="/allquestions" class="sidebar-item">
                                     <i class="pe-1 bi bi-patch-question-fill"></i>
                                     <span>Questions</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="/home/tags" class="sidebar-item">
+                                <a href="/tags" class="sidebar-item">
                                     <i class="pe-1 bi bi-tags-fill"></i>
                                     <span>Tags</span>
                                 </a>

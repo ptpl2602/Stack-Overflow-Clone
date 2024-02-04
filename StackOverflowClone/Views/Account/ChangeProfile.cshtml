@@ -42,7 +42,7 @@
 </form>
 
 <script>
-    $("a[href='/account/profile']").attr("id", "active")
+    $("a[href='/account/changeprofile']").parent().attr("id", "active")
     $(document).on("submit", ".needs-validation", validate);
     $(".needs-validation input").blur(validate);
 

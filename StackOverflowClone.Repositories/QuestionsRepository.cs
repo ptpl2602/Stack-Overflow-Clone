@@ -74,6 +74,7 @@ namespace StackOverflowClone.Repositories
             if(updateQuestion != null)
             {
                 updateQuestion.QuestionName = question.QuestionName;
+                updateQuestion.QuestionContent = question.QuestionContent;
                 updateQuestion.QuestionDateAndTime = question.QuestionDateAndTime;
                 updateQuestion.CategoryID = question.CategoryID;
                 _dbContext.SaveChanges();

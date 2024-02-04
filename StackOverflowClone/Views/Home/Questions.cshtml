@@ -1,7 +1,7 @@
 ﻿@model List<StackOverflowClone.ViewModels.QuestionViewModel>
 
 @{
-    ViewBag.Title = "Stack Overflow";
+    ViewBag.Title = "Questions";
     Layout = "~/Views/Shared/_LayoutPage2.cshtml";
 }
 
@@ -9,7 +9,7 @@
     <div class="col-9">
         <div class="row">
             <div class="col-10">
-                <h1 class="fw-normal" style="font-size: 30px;">Top Questions</h1>
+                <h1 class="fw-normal" style="font-size: 30px;">All Questions</h1>
             </div>
             <div class="col-2">
                 @if (Session["CurrentUserName"] == null)
@@ -189,5 +189,6 @@
 </div>
 
 <script>
-    $("a[href='/home/index2']").parent().attr('id', 'active')
+    $("a[href='/allquestions']").parent().attr('id', 'active')
 </script>
+
