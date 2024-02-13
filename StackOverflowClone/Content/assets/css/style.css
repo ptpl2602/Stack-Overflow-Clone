@@ -259,6 +259,26 @@
   margin: 0.3rem;
 }
 
+.btn-vote {
+  border: 0.1rem solid #d5d8da;
+  border-radius: 20rem;
+  background-color: #f8fbfa;
+  padding: 1.1rem;
+}
+.btn-vote:hover {
+  background-color: #fbdbc1;
+}
+
+.btn-vote-color {
+  border: 0.1rem solid #e7710c;
+  border-radius: 20rem;
+  background-color: #fef6f1;
+  padding: 1.1rem;
+}
+.btn-vote-color:hover {
+  background-color: #fbdbc1;
+}
+
 .font-tag-mono {
   font-family: "Cascadia Mono", "Segoe UI", monospace;
   font-size: 1.3rem;
@@ -282,6 +302,13 @@
   line-height: 1.5rem;
 }
 
+.font-gray13 {
+  font-size: 1.3rem;
+  color: #636B74;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Open Sans", "Helvetica Neue", sans-serif;
+  line-height: 1.7rem;
+}
+
 .font-tag12 {
   font-size: 1.3rem;
   color: #636B74;
@@ -303,7 +330,16 @@
   color: #636B74;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 1.5rem;
-  line-height: 2rem;
+  line-height: 2.3rem;
+  color: #242729;
+}
+
+.font-black19 {
+  font-size: 1.3rem;
+  color: #636B74;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 1.9rem;
+  line-height: 2.5rem;
   color: #242729;
 }
 
@@ -325,6 +361,17 @@
   color: #1a75d1 !important;
 }
 
+.fc-white {
+  color: #f8fbfa !important;
+}
+
+.fc-gray {
+  color: #babfc5 !important;
+}
+.fc-gray:hover {
+  color: #e2e7e8 !important;
+}
+
 .fc-blue-hover {
   color: #1a75d1 !important;
 }
@@ -332,13 +379,13 @@
   color: #145ca3 !important;
 }
 
-#active {
+.active {
   color: #0c0d0e !important;
   font-weight: 700 !important;
   background-color: #f0f2f2;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Open Sans", "Helvetica Neue", sans-serif;
 }
-#active i {
+.active i {
   color: #0c0d0e !important;
   font-weight: 700 !important;
 }
@@ -938,4 +985,42 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   -webkit-line-clamp: 4;
+}
+
+.content-question-title {
+  font-size: 1.3rem;
+  color: #636B74;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Open Sans", "Helvetica Neue", sans-serif;
+  line-height: 3.6rem;
+  font-size: 2.7rem;
+  color: #242729;
+}
+
+.content-vote-count {
+  font-size: 1.3rem;
+  color: #636B74;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Open Sans", "Helvetica Neue", sans-serif;
+  color: #242729;
+  font-size: 1.9rem;
+  line-height: 2.5rem;
+  font-weight: 700;
+}
+
+.question-user-info {
+  background-color: #edf5fd;
+  width: 20rem;
+  height: 6.8rem;
+  padding: 0.5rem 0.6rem 0.7rem 0.7rem;
+  border-radius: 0.6rem;
+  margin: 0.4rem 0;
+}
+
+#footer {
+  width: 100%;
+  background-color: #242729;
+  padding: 3.2rem 1.2rem 2rem 1.2rem;
+}
+#footer li {
+  list-style: none;
+  margin-bottom: 1rem;
 }

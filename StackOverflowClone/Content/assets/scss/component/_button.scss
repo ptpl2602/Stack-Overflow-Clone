@@ -154,3 +154,26 @@
     padding: 1rem;
     margin: 0.3rem;
 }
+
+
+.btn-vote {
+    border: 0.1rem solid $gray-border;
+    border-radius: 20rem;
+    background-color: $white;
+    padding: 1.1rem;
+
+    &:hover {
+        background-color: $orange-white;
+    }
+}
+
+.btn-vote-color {
+    border: 0.1rem solid $primary-color;
+    border-radius: 20rem;
+    background-color: #fef6f1;
+    padding: 1.1rem;
+
+    &:hover {
+        background-color: $orange-white;
+    }
+}

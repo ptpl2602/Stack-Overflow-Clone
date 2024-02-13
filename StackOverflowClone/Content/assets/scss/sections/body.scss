@@ -376,3 +376,29 @@
     overflow: hidden;
     -webkit-line-clamp: 4;
 }
+
+
+//------------------------Questions Detail ---------------------
+.content-question-title {
+    @include fontNormal();
+    line-height: 3.6rem;
+    font-size: 2.7rem;
+    color: $black;
+}
+
+.content-vote-count {
+    @include fontNormal();
+    color: $black;
+    font-size: 1.9rem;
+    line-height: 2.5rem;
+    font-weight: 700;
+}
+
+.question-user-info {
+    background-color: $blue-background-question;
+    width: 20rem;
+    height: 6.8rem;
+    padding: 0.5rem 0.6rem 0.7rem 0.7rem;
+    border-radius: 0.6rem;
+    margin: 0.4rem 0;
+}

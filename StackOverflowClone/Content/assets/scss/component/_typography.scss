@@ -21,6 +21,11 @@
     line-height: 1.5rem;
 }
 
+.font-gray13 {
+    @include fontNormal();
+    line-height: 1.7rem;
+}
+
 .font-tag12 {
     @include fontNormal();
     font-size: 1.2rem;
@@ -36,7 +41,14 @@
 .font-black15 {
     @include fontNormal();
     font-size: 1.5rem;
-    line-height: 2rem;
+    line-height: 2.3rem;
+    color: $black;
+}
+
+.font-black19 {
+    @include fontNormal();
+    font-size: 1.9rem;
+    line-height: 2.5rem;
     color: $black;
 }
 
@@ -56,6 +68,18 @@
     color: $secondary-color !important;
 }
 
+.fc-white {
+    color: $white !important;
+}
+
+.fc-gray {
+    color: $gray-border2 !important;
+
+    &:hover {
+        color: $gray-hover !important;
+    }
+}
+
 .fc-blue-hover {
     color: $secondary-color !important;
 
@@ -64,7 +88,7 @@
     }
 }
 
-#active {
+.active {
     color: $gray-focus !important;
     font-weight: 700 !important;
     background-color: $gray-hover-sidebar;

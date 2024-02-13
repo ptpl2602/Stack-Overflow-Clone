@@ -77,7 +77,10 @@ namespace StackOverflowClone.ServiceLayer
             QuestionViewModel viewModel = null;
             if (question != null)
             {
-                var config = new MapperConfiguration(i => { i.CreateMap<Question, QuestionViewModel>(); i.IgnoreUnmapped(); });
+                var config = new MapperConfiguration(i => { i.CreateMap<Question, QuestionViewModel>(); i.IgnoreUnmapped();
+                                                            i.CreateMap<User, UserViewModel>(); i.IgnoreUnmapped();
+                                                            i.CreateMap<Category, CategoryViewModel>(); i.IgnoreUnmapped();
+                                                        });
                 IMapper mapper = config.CreateMapper();
                 viewModel = mapper.Map<Question, QuestionViewModel>(question);
 

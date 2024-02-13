@@ -48,7 +48,10 @@ namespace StackOverflowClone.Repositories
 
         public List<Question> GetQuestionsById(int questionId)
         {
-            List<Question> questions = _dbContext.Questions.Where(i => i.QuestionID == questionId).ToList();
+            List<Question> questions = _dbContext.Questions.Where(i => i.QuestionID == questionId)
+                                                        .Include(i => i.Category)
+                                                        .Include(i => i.User)
+                                                        .ToList();
             return questions;
         }
 

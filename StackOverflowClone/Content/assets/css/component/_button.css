@@ -250,3 +250,23 @@
   padding: 1rem;
   margin: 0.3rem;
 }
+
+.btn-vote {
+  border: 0.1rem solid #d5d8da;
+  border-radius: 20rem;
+  background-color: #f8fbfa;
+  padding: 1.1rem;
+}
+.btn-vote:hover {
+  background-color: #fbdbc1;
+}
+
+.btn-vote-color {
+  border: 0.1rem solid #e7710c;
+  border-radius: 20rem;
+  background-color: #fef6f1;
+  padding: 1.1rem;
+}
+.btn-vote-color:hover {
+  background-color: #fbdbc1;
+}

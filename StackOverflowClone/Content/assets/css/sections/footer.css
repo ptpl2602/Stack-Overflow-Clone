@@ -1,1 +1,9 @@
-﻿
+﻿#footer {
+  width: 100%;
+  background-color: #242729;
+  padding: 3.2rem 1.2rem 2rem 1.2rem;
+}
+#footer li {
+  list-style: none;
+  margin-bottom: 1rem;
+}

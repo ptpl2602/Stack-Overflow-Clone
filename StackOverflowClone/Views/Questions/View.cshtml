@@ -1,8 +1,279 @@
-﻿
+﻿@model StackOverflowClone.ViewModels.QuestionViewModel
+
 @{
-    ViewBag.Title = "View";
+    ViewBag.Title = Model.QuestionName;
     Layout = "~/Views/Shared/_LayoutPage2.cshtml";
 }
 
-<h2>View</h2>
+<div class="row">
+    <div class="col-10 p-0">
+        <p class="content-question-title">
+            @Model.QuestionName
+        </p>
+    </div>
+    <div class="col-2 p-0 text-end">
+        <button class="btn-inline-blue py-3">Ask Question</button>
+    </div>
+</div>
+<div class="d-flex flex-wrap mb-3">
+    <p class="font-gray13 flex-nowrap me-4 mb-3">
+        Asked  <span id="postedTime" class="font-black13 ms-1">@Model.QuestionDateAndTime</span>
+    </p>
+    <p class="font-gray13 flex-nowrap me-4 mb-3">
+        Viewed  <span class="font-black13 ms-1">@Model.ViewsCount times</span>
+    </p>
+</div>
+<hr style="color: #636B74;">
+<div class="row pt-2">
+    <div class="col-9 pe-4">
+        <div class="row">
+            <div class="col-1 ps-0 d-flex flex-column justify-content-start align-items-center">
+                <button class="btn-vote">
+                    <svg aria-hidden="true" class="svg-icon iconArrowUp" width="18" height="18" viewBox="0 0 18 18"><path fill="#242729" d="M1 12h16L9 4l-8 8Z"></path></svg>
+                </button>
+                <span class="content-vote-count py-3">@Model.VotesCount</span>
+                <button class="btn-vote">
+                    <svg aria-hidden="true" class="svg-icon iconArrowDown" width="18" height="18" viewBox="0 0 18 18"><path fill="#242729" d="M1 6h16l-8 8-8-8Z"></path></svg>
+                </button>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col-12 mb-4">
+                        <p class="font-black15 ps-2">@Model.QuestionContent</p>
+                    </div>
+                    <div class="col-12">
+                        <a href="/categories/view/@Model.CategoryID" class="question-tags">@Model.Category.CategoryName</a> <a href="#" class="question-tags">HTML</a>
+                    </div>
+                    <div class="col my-4 p-0 d-flex justify-content-end">
+                        <div class="question-user-info">
+                            <p class="font-gray13 mb-2 fw-normal">asked @Model.QuestionDateAndTime</p>
+                            <div class="d-flex align-items-center">
+                                <img src="https://www.gravatar.com/avatar/4bf8226f1b18a595958037b0e6f221c4?s=48&d=identicon&r=PG" class="rounded me-3" alt="" srcset="" width="32px" height="32px">
+                                @if (Convert.ToInt32(Session["CurrentUserID"]) != Model.UserID)
+                                {
+                                    <a href="#" class="font-black13 fc-blue-hover text-decoration-none">@Model.User.Name</a>
+                                }
+                                else
+                                {
+                                    <a href="#" class="font-black13 fc-blue-hover text-decoration-none">you</a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row pt-5 mb-3">
+            <div class="col-9">
+                <h1 class="font-black19 fw-normal p-0">@Model.AnswersCount Answers</h1>
+            </div>
+            <div class="col-3 text-end">
+                <div class="btn-group btn-group-lg" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                    <label class="btn btn-light font-black13 p-3 px-4 border border-secondary-subtle" for="btnradio1">Newest</label>
 
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                    <label class="btn btn-light font-black13 p-3 px-4 border border-secondary-subtle" for="btnradio2">Oldest</label>
+                </div>
+            </div>
+        </div>
+        @for (int i=0; i < Model.Answers.Count; i++)
+        {
+            <div class="row pt-3">
+                <div class="col-1 ps-0 d-flex flex-column justify-content-start align-items-center">
+                    @if (Session["CurrentUserName"] != null && Convert.ToInt32(Session["CurrentUserID"]) != Model.Answers[i].UserID)
+                    {
+                        if (Model.Answers[i].CurrentUserVoteType == 1)
+                        {
+                            <!-- Button vote color -->
+                            <button class="btn-vote-color" data-answerid="@Model.Answers[i].AnswerID">
+                                <svg aria-hidden="true" class="svg-icon iconArrowUp" width="18" height="18" viewBox="0 0 18 18"><path fill="#e7710c" d="M1 12h16L9 4l-8 8Z"></path></svg>
+                            </button>
+                            <span class="content-vote-count py-3">@Model.VotesCount</span>
+                            <button class="btn-vote" data-answerid="@Model.Answers[i].AnswerID">
+                                <svg aria-hidden="true" class="svg-icon iconArrowDown" width="18" height="18" viewBox="0 0 18 18"><path fill="#e7710c" d="M1 6h16l-8 8-8-8Z"></path></svg>
+                            </button>
+                        }
+                        else if (Model.Answers[i].CurrentUserVoteType == -1)
+                        {
+                            <button class="btn-vote" data-answerid="@Model.Answers[i].AnswerID">
+                                <svg aria-hidden="true" class="svg-icon iconArrowUp" width="18" height="18" viewBox="0 0 18 18"><path fill="#242729" d="M1 12h16L9 4l-8 8Z"></path></svg>
+                            </button>
+                            <span class="content-vote-count py-3">@Model.VotesCount</span>
+                            <button class="btn-vote-color" data-answerid="@Model.Answers[i].AnswerID">
+                                <svg aria-hidden="true" class="svg-icon iconArrowDown" width="18" height="18" viewBox="0 0 18 18"><path fill="#242729" d="M1 6h16l-8 8-8-8Z"></path></svg>
+                            </button>
+                        }
+                        else
+                        {
+                            <button class="btn-vote" data-answerid="@Model.Answers[i].AnswerID">
+                                <svg aria-hidden="true" class="svg-icon iconArrowUp" width="18" height="18" viewBox="0 0 18 18"><path fill="#242729" d="M1 12h16L9 4l-8 8Z"></path></svg>
+                            </button>
+                            <span class="content-vote-count py-3">@Model.VotesCount</span>
+                            <button class="btn-vote" data-answerid="@Model.Answers[i].AnswerID">
+                                <svg aria-hidden="true" class="svg-icon iconArrowDown" width="18" height="18" viewBox="0 0 18 18"><path fill="#242729" d="M1 6h16l-8 8-8-8Z"></path></svg>
+                            </button>
+                        }
+                    }
+
+
+                </div>
+                <div class="col">
+                    <div class="row">
+                        @if (Convert.ToInt32(Session["CurrentUserID"]) != Model.Answers[i].UserID)
+                        {
+                            <div class="col-12 mb-4">
+                                <p class="font-black15 ps-2">@Model.Answers[i].AnswerText</p>
+                            </div>
+                            <div class="col mb-4 mt-2 p-0 d-flex justify-content-end">
+                                <div class="question-user-info" style="background-color: #fffefe;">
+                                    <p class="font-gray13 mb-2 fw-normal">answered @Model.Answers[i].AnswerDataAndTime</p>
+                                    <div class="d-flex align-items-center">
+                                        <img src="https://www.gravatar.com/avatar/4bf8226f1b18a595958037b0e6f221c4?s=48&d=identicon&r=PG" class="rounded me-3" alt="" srcset="" width="32px" height="32px">
+                                        <a href="#" class="font-black13 fc-blue-hover text-decoration-none">@Model.Answers[i].User.UserID</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-12 mb-4">
+                                <p class="font-black15 ps-2">@Model.Answers[i].AnswerText</p>
+                            </div>
+                            <div class="col ms-4 mb-4 mt-2 p-0 d-flex justify-content-between">
+                                <a href="#" class="font-gray13 text-decoration-none">Edit</a>
+                                <form class="need-validation hidden" novalidate="novalidate" action="/questions/editanswer" method="post"></form>
+                                <div class="question-user-info" style="background-color: #fffefe;">
+                                    <p class="font-gray13 mb-2 fw-normal">answered @Model.Answers[i].AnswerDataAndTime</p>
+                                    <div class="d-flex align-items-center">
+                                        <img src="https://www.gravatar.com/avatar/4bf8226f1b18a595958037b0e6f221c4?s=48&d=identicon&r=PG" class="rounded me-3" alt="" srcset="" width="32px" height="32px">
+                                        <a href="#" class="font-black13 fc-blue-hover text-decoration-none">you</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="row pt-3">
+            <div class="col-1 ps-0 d-flex flex-column justify-content-start align-items-center">
+                <button class="btn-vote">
+                    <svg aria-hidden="true" class="svg-icon iconArrowUp" width="18" height="18" viewBox="0 0 18 18"><path fill="#242729" d="M1 12h16L9 4l-8 8Z"></path></svg>
+                </button>
+                <span class="content-vote-count py-3">2</span>
+                <button class="btn-vote">
+                    <svg aria-hidden="true" class="svg-icon iconArrowDown" width="18" height="18" viewBox="0 0 18 18"><path fill="#242729" d="M1 6h16l-8 8-8-8Z"></path></svg>
+                </button>
+
+                
+                
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col-12 mb-4">
+                        <p class="font-black15 ps-2">I have found that trying to use different attributes (even standardized ones like [[noreturn]]) on different specializations of the same function template is a recipe for a bad time. My solution here would be to add a layer of lexical indirection: split your implementations out into WorkerSSE2, WorkerAVX2, WorkerAVX512BW, etc, and then have Worker select between them depending on what features are detected at run time. If you're trying to precompile all of the different architectures' implementations into a single "universal" binary, while having generic code stitching it all together, at some point in the control-flow you need a runtime indirection that chooses which implementation to dispatch</p>
+                    </div>
+                    <div class="col mb-4 mt-2 p-0 d-flex justify-content-end">
+                        <div class="question-user-info" style="background-color: #fffefe;">
+                            <p class="font-gray13 mb-2 fw-normal">answered Oct 25, 2020</p>
+                            <div class="d-flex align-items-center">
+                                <img src="https://www.gravatar.com/avatar/4bf8226f1b18a595958037b0e6f221c4?s=48&d=identicon&r=PG" class="rounded me-3" alt="" srcset="" width="32px" height="32px">
+                                <a href="#" class="font-black13 fc-blue-hover text-decoration-none">Phương Linh</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-3">
+                <h1 class="font-black19 fw-normal p-0">Your Answer</h1>
+            </div>
+            <div class="col-12 mb-5">
+                <div class="form-group">
+                    <textarea class="form-control font-black13 border border-secondary-subtle p-3" rows="10" id="answer" placeholder="Enter answer with minium 30 characters."></textarea>
+                </div>
+            </div>
+            <div class="col-12 mb-5">
+                <a href="#" class="btn-inline-blue text-decoration-none">Post Your Answer</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="card border-warning-subtle">
+            <div class="card-header bg-warning-subtle fw-bold fs-5 py-3 border-warning-subtle">
+                The Overflow Blog
+            </div>
+            <div class="card-body bg-warning bg-opacity-10 border-warning-subtle py-4">
+                <a href="#" class="content-note-link">
+                    <i class="bi bi-pen pe-2" style="color: #1a75d1;"></i>
+                    Sending bugs back in time
+                </a>
+            </div>
+        </div>
+        <div class="card border-warning-subtle">
+            <div class="card-header bg-warning-subtle fs-5 fw-bold py-3  border-warning-subtle">
+                Featured on Meta
+            </div>
+            <div class="card-body bg-warning bg-opacity-10 py-4">
+                <a href="#" class="content-note-link">
+                    <i class="bi bi-chat-left pe-2" style="color: #1a75d1;"></i>
+                    Sites can now request to enable a banner to warn about their policy on AI-generated content
+                </a> <br>
+                <a href="#" class="content-note-link">
+                    <img src="./assets/img/stack-overflow.png" class="me-2" alt="Icon Stack Overfow" style="width: 12px; height: 12px;">
+                    Temporary policy: Generative AI (e.g., ChatGPT) is banned
+                </a> <br>
+                <a href="#" class="content-note-link">
+                    <img src="./assets/img/stack-overflow.png" class="me-2" alt="Icon Stack Overfow" style="width: 12px; height: 12px;">
+                    January 2024 post from Ryan Polk, Chief Product Officer
+                </a>
+            </div>
+        </div>
+
+        <div class="mt-4 card">
+            <div class="card-header fs-4 font-tag-black600 py-3 bg-secondary bg-opacity-10">
+                Custom Filters
+            </div>
+            <div class="card-body py-4">
+                <a href="#" class="text-decoration-none font-tag-black600 text-primary">Create a custom filter</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Lấy ngày giờ hiện tại
+    var currentDate = new Date();
+
+    // Lấy thời gian đăng câu hỏi từ ViewBag và chuyển đổi thành đối tượng Date
+    var postedTime = new Date("@Model.QuestionDateAndTime");
+
+    // Tính thời gian đã trôi qua
+    var timeDifference = currentDate - postedTime;
+
+    // Chuyển đổi thời gian sang định dạng "ago"
+    var agoTime = calculateAgoTime(timeDifference);
+
+    // Hiển thị thời gian đã chuyển đổi lên giao diện
+    document.getElementById("postedTime").innerText = agoTime;
+
+    // Hàm tính thời gian "ago"
+    function calculateAgoTime(milliseconds) {
+        var seconds = Math.floor(milliseconds / 1000);
+        var minutes = Math.floor(seconds / 60);
+        var hours = Math.floor(minutes / 60);
+        var days = Math.floor(hours / 24);
+
+        if (days > 0) {
+            return days + " days ago";
+        } else if (hours > 0) {
+            return hours + " hours ago";
+        } else if (minutes > 0) {
+            return minutes + " minutes ago";
+        } else {
+            return seconds + " seconds ago";
+        }
+    }
+</script>
