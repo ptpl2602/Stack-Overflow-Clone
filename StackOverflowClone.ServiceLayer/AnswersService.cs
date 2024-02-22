@@ -12,9 +12,10 @@ namespace StackOverflowClone.ServiceLayer
 {
     public interface IAnswersService
     {
-        void InsertAnswer(AnswerViewModel viewModel);
+        void InsertAnswer(NewAnswerViewModel viewModel);
         void DeleteAnswer(int answerId);
         void UpdateAnswertVotesCount(int answerId, int userId, int value);
+        int GetVoteCountByAnswerId (int answerId);
         List<AnswerViewModel> GetAnswersByQuestionId(int questionId);
         AnswerViewModel GetAnswersByAnswerId(int answerId);
     }
@@ -28,11 +29,11 @@ namespace StackOverflowClone.ServiceLayer
             iAnswerRepo = new AnswersRepository();
             iVoteRepo = new VotesRepository();
         }
-        public void InsertAnswer(AnswerViewModel viewModel)
+        public void InsertAnswer(NewAnswerViewModel viewModel)
         {
             var config = new MapperConfiguration(i => { i.CreateMap<NewAnswerViewModel, Answer>(); i.IgnoreUnmapped(); });
             IMapper mapper = config.CreateMapper();
-            Answer answer = mapper.Map<AnswerViewModel, Answer>(viewModel);
+            Answer answer = mapper.Map<NewAnswerViewModel, Answer>(viewModel);
             iAnswerRepo.InsertAnswer(answer);
         }
         public void UpdateAnswer(EditAnswerViewModel viewModel)
@@ -53,9 +54,12 @@ namespace StackOverflowClone.ServiceLayer
         public List<AnswerViewModel> GetAnswersByQuestionId(int questionId)
         {
             List<Answer> answers = iAnswerRepo.GetAnswersByQuestionId(questionId);
-            var config = new MapperConfiguration(i => { i.CreateMap<Answer, AnswerViewModel>(); i.IgnoreUnmapped(); });
+            var config = new MapperConfiguration(i => { i.CreateMap<Answer, AnswerViewModel>(); i.IgnoreUnmapped();
+                                                        i.CreateMap<User, UserViewModel>(); i.IgnoreUnmapped();
+                                                        i.CreateMap<Question, QuestionViewModel>(); i.IgnoreUnmapped();
+            });
             IMapper mapper = config.CreateMapper();
-            List<AnswerViewModel> viewModel = mapper.Map < List<Answer>, List<AnswerViewModel>>(answers);
+            List<AnswerViewModel> viewModel = mapper.Map<List<Answer>, List<AnswerViewModel>>(answers);
 
             return viewModel;
         }
@@ -65,11 +69,19 @@ namespace StackOverflowClone.ServiceLayer
             AnswerViewModel viewModel = null;
             if (answer != null)
             {
-                var config = new MapperConfiguration(i => { i.CreateMap<Answer, AnswerViewModel>(); i.IgnoreUnmapped(); });
+                var config = new MapperConfiguration(i => { i.CreateMap<Answer, AnswerViewModel>(); i.IgnoreUnmapped();
+                                                            i.CreateMap<User, UserViewModel>(); i.IgnoreUnmapped();
+                                                            i.CreateMap<Question, QuestionViewModel>(); i.IgnoreUnmapped();
+                                                        });
                 IMapper mapper = config.CreateMapper();
                 viewModel = mapper.Map<Answer, AnswerViewModel>(answer);
             }
             return viewModel;
+        }
+
+        public int GetVoteCountByAnswerId (int answerId)
+        {
+            return iAnswerRepo.GetVoteCountByAnswerId(answerId) ;
         }
     }
 }

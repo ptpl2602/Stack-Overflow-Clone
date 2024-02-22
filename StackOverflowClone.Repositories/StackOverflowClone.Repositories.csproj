@@ -56,6 +56,7 @@
     <Compile Include="QuestionsRepository.cs" />
     <Compile Include="UsersRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VotesQuestionsRepository.cs" />
     <Compile Include="VotesRepository.cs" />
   </ItemGroup>
   <ItemGroup>

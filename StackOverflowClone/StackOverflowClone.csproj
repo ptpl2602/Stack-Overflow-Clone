@@ -2884,6 +2884,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="APIController\AccountController.cs" />
+    <Compile Include="APIController\QuestionsController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />

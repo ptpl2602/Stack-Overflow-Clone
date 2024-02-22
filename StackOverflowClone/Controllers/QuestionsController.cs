@@ -28,5 +28,26 @@ namespace StackOverflowClone.Controllers
             QuestionViewModel questionViewModel = this.iQuestionService.GetQuestionById(id, userID);
             return View(questionViewModel);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddAnswer(NewAnswerViewModel viewModel)
+        {
+            viewModel.UserID = Convert.ToInt32(Session["CurrentUserID"]);
+            viewModel.AnswerDateAndTime = DateTime.Now;
+            viewModel.VotesCount = 0;
+
+            if(ModelState.IsValid)
+            {
+                this.iAnswersService.InsertAnswer(viewModel);
+                return RedirectToAction("View", "Questions", new { id = viewModel.QuestionID});
+            }
+            else
+            {
+                ModelState.AddModelError("x", "Invalib Data");
+                QuestionViewModel questionViewModel = this.iQuestionService.GetQuestionById(viewModel.QuestionID, viewModel.UserID);
+                return View("View", questionViewModel);
+            }
+        }
     }
 }

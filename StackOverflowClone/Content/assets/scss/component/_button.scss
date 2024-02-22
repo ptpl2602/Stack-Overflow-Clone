@@ -156,7 +156,7 @@
 }
 
 
-.btn-vote {
+/*.btn-vote {
     border: 0.1rem solid $gray-border;
     border-radius: 20rem;
     background-color: $white;
@@ -175,5 +175,65 @@
 
     &:hover {
         background-color: $orange-white;
+    }
+}*/
+
+.btn-vote-up {
+    border: 0.1rem solid $gray-border;
+    border-radius: 20rem;
+    background-color: $white;
+    padding: 1.1rem;
+
+    &:hover {
+        background-color: $orange-white;
+    }
+
+    path {
+        fill: #242729;
+    }
+}
+
+.btn-vote-down {
+    border: 0.1rem solid $gray-border;
+    border-radius: 20rem;
+    background-color: $white;
+    padding: 1.1rem;
+
+    &:hover {
+        background-color: $orange-white;
+    }
+
+    path {
+        fill: #242729;
+    }
+}
+
+.btn-vote-color-up {
+    border: 0.1rem solid $primary-color;
+    border-radius: 20rem;
+    background-color: #fef6f1;
+    padding: 1.1rem;
+
+    &:hover {
+        background-color: $orange-white;
+    }
+
+    path {
+        fill: #e7710c;
+    }
+}
+
+.btn-vote-color-down {
+    border: 0.1rem solid $primary-color;
+    border-radius: 20rem;
+    background-color: #fef6f1;
+    padding: 1.1rem;
+
+    &:hover {
+        background-color: $orange-white;
+    }
+
+    path {
+        fill: #e7710c;
     }
 }

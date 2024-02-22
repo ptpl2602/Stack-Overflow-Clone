@@ -15,7 +15,7 @@ namespace StackOverflowClone.ServiceLayer
     {
         void InsertQuestion(QuestionViewModel viewModel);
         void UpdateQuestionDetails(EditQuestionViewModel viewModel);
-        void UpdateQuestionVoteCount(int id, int value);
+        void UpdateQuestionVoteCount(int questionId, int userId, int value);
         void UpdateQuestionAnswersCount(int id, int value);
         void UpdateQuestionViewsCount(int id, int value);
         void DeleteQuestion(int questionId);
@@ -46,9 +46,9 @@ namespace StackOverflowClone.ServiceLayer
             Question question = mapper.Map<EditQuestionViewModel, Question>(viewModel);
             iQuestionsRepo.UpdateQuestionDetails(question);
         }
-        public void UpdateQuestionVoteCount(int id, int value)
+        public void UpdateQuestionVoteCount(int questionId, int userId, int value)
         {
-            iQuestionsRepo.UpdateQuestionVoteCount(id, value);
+            iQuestionsRepo.UpdateQuestionVoteCount(questionId, userId, value);
         }
         public void UpdateQuestionAnswersCount(int id, int value)
         {
@@ -80,9 +80,16 @@ namespace StackOverflowClone.ServiceLayer
                 var config = new MapperConfiguration(i => { i.CreateMap<Question, QuestionViewModel>(); i.IgnoreUnmapped();
                                                             i.CreateMap<User, UserViewModel>(); i.IgnoreUnmapped();
                                                             i.CreateMap<Category, CategoryViewModel>(); i.IgnoreUnmapped();
-                                                        });
+                                                            i.CreateMap<Answer, AnswerViewModel>(); i.IgnoreUnmapped();
+                });
                 IMapper mapper = config.CreateMapper();
                 viewModel = mapper.Map<Question, QuestionViewModel>(question);
+                viewModel.CurrentUserVoteType = 0;
+                var votequestion = question.VotesQuestions.FirstOrDefault(i => i.UserID == UserId);
+                if(votequestion != null)
+                {
+                    viewModel.CurrentUserVoteType = votequestion.VoteValue;
+                }
 
                 foreach(var i in viewModel.Answers)
                 {

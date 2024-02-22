@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Globalization;
 
 namespace StackOverflowClone.ViewModels
 {
@@ -20,5 +21,6 @@ namespace StackOverflowClone.ViewModels
         public int QuestionID { get; set; }
         [Required]
         public int VotesCount { get; set; }
+        public bool IsAccepted { get; set; }
     }
 }

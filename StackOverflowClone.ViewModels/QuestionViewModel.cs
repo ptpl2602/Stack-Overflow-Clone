@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Globalization;
 
 namespace StackOverflowClone.ViewModels
 {
@@ -23,7 +24,7 @@ namespace StackOverflowClone.ViewModels
         [Required]
         public int CategoryID { get; set; }
         [Required]
-        public int VotesCount { get; set; }
+        public int VoteCount { get; set; }
         [Required]
         public int AnswersCount { get; set; }
         [Required]
@@ -32,5 +33,7 @@ namespace StackOverflowClone.ViewModels
         public UserViewModel User { get; set; }
         public CategoryViewModel Category { get; set; }
         public virtual List<AnswerViewModel> Answers { get; set; }
+        public virtual List<VotesQuestionViewModel> VotesQuestionsViewModels { get; set; }
+        public int CurrentUserVoteType { get; set; }
     }
 }

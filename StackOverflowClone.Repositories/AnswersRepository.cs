@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using StackOverflowClone.DomainModels;
@@ -13,6 +15,8 @@ namespace StackOverflowClone.Repositories
         void UpdateAnswer(Answer answer);
         void DeleteAnswer(int answerId);
         void UpdateAnswertVotesCount(int answerId, int userId, int value);
+        int GetVoteCountByAnswerId(int answerId);
+        void AcceptAnswer(int answerId);
         List<Answer> GetAnswersByQuestionId(int questionId);
         List<Answer> GetAnswersByAnswerId (int answerId);
     }
@@ -40,14 +44,26 @@ namespace StackOverflowClone.Repositories
 
         public List<Answer> GetAnswersByAnswerId(int answerId)
         {
-            List<Answer> answers = _dbContext.Answers.Where(i => i.AnswerID == answerId).ToList();
+            List<Answer> answers = _dbContext.Answers.Where(i => i.AnswerID == answerId)
+                                                            .Include(i => i.User)
+                                                            .ToList();
             return answers;
         }
 
         public List<Answer> GetAnswersByQuestionId(int questionId)
         {
-            List<Answer> answers = _dbContext.Answers.Where(i => i.QuestionID == questionId).ToList();
+            List<Answer> answers = _dbContext.Answers.Where(i => i.QuestionID == questionId)
+                                                    .Include(i => i.Question)
+                                                    .Include(i => i.User)
+                                                    .OrderByDescending(i => i.AnswerDateAndTime)
+                                                    .ToList();
             return answers;
+        }
+
+        public int GetVoteCountByAnswerId(int answerId)
+        {
+            var answer = _dbContext.Answers.FirstOrDefault(a => a.AnswerID == answerId);
+            return answer?.VoteCount ?? 0;
         }
 
         public void InsertAnswer(Answer answer)
@@ -55,20 +71,34 @@ namespace StackOverflowClone.Repositories
             _dbContext.Answers.Add(answer);
             _dbContext.SaveChanges();
 
-            iQuestionRepo.UpdateQuestionAnswersCount(answer.AnswerID, 1);
+            iQuestionRepo.UpdateQuestionAnswersCount(answer.QuestionID, 1);
         }
 
         public void UpdateAnswertVotesCount(int answerId, int userId, int value)
         {
             Answer updateAnswer = _dbContext.Answers.Where(i => i.AnswerID == answerId).FirstOrDefault();
-            if(updateAnswer != null)
-            {
-                updateAnswer.VoteCount += value;
-                _dbContext.SaveChanges();
 
-                iQuestionRepo.UpdateQuestionVoteCount(answerId, value);
+            var existingVote = _dbContext.Votes.FirstOrDefault(i => i.AnswerID == answerId && i.UserID == userId);
+
+            if(existingVote != null)
+            {
+                if(existingVote.VoteValue == value)
+                {
+                    updateAnswer.VoteCount -= value;
+                }
+                else
+                {
+                    updateAnswer.VoteCount += value - existingVote.VoteValue;
+                }
+                existingVote.VoteValue = value;
+            }
+            else
+            {
+                // User hasn't voted before
+                updateAnswer.VoteCount += value;
                 iVoteRepo.UpdateVote(answerId, userId, value);
             }
+            _dbContext.SaveChanges();
         }
 
         public void UpdateAnswer(Answer answer)
@@ -81,6 +111,16 @@ namespace StackOverflowClone.Repositories
 
                 iQuestionRepo.UpdateQuestionAnswersCount(answer.AnswerID, -1);
             }
+        }
+
+        public void AcceptAnswer(int answerId)
+        {
+            var answer = _dbContext.Answers.FirstOrDefault(i => i.AnswerID == answerId);
+            if(answer != null)
+            {
+                answer.IsAccepted = true;
+                _dbContext.SaveChanges();   
+            }        
         }
     }
 }

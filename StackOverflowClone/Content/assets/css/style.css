@@ -259,24 +259,77 @@
   margin: 0.3rem;
 }
 
-.btn-vote {
+/*.btn-vote {
+    border: 0.1rem solid $gray-border;
+    border-radius: 20rem;
+    background-color: $white;
+    padding: 1.1rem;
+
+    &:hover {
+        background-color: $orange-white;
+    }
+}
+
+.btn-vote-color {
+    border: 0.1rem solid $primary-color;
+    border-radius: 20rem;
+    background-color: #fef6f1;
+    padding: 1.1rem;
+
+    &:hover {
+        background-color: $orange-white;
+    }
+}*/
+.btn-vote-up {
   border: 0.1rem solid #d5d8da;
   border-radius: 20rem;
   background-color: #f8fbfa;
   padding: 1.1rem;
 }
-.btn-vote:hover {
+.btn-vote-up:hover {
   background-color: #fbdbc1;
 }
+.btn-vote-up path {
+  fill: #242729;
+}
 
-.btn-vote-color {
+.btn-vote-down {
+  border: 0.1rem solid #d5d8da;
+  border-radius: 20rem;
+  background-color: #f8fbfa;
+  padding: 1.1rem;
+}
+.btn-vote-down:hover {
+  background-color: #fbdbc1;
+}
+.btn-vote-down path {
+  fill: #242729;
+}
+
+.btn-vote-color-up {
   border: 0.1rem solid #e7710c;
   border-radius: 20rem;
   background-color: #fef6f1;
   padding: 1.1rem;
 }
-.btn-vote-color:hover {
+.btn-vote-color-up:hover {
   background-color: #fbdbc1;
+}
+.btn-vote-color-up path {
+  fill: #e7710c;
+}
+
+.btn-vote-color-down {
+  border: 0.1rem solid #e7710c;
+  border-radius: 20rem;
+  background-color: #fef6f1;
+  padding: 1.1rem;
+}
+.btn-vote-color-down:hover {
+  background-color: #fbdbc1;
+}
+.btn-vote-color-down path {
+  fill: #e7710c;
 }
 
 .font-tag-mono {
@@ -379,13 +432,13 @@
   color: #145ca3 !important;
 }
 
-.active {
+#active {
   color: #0c0d0e !important;
   font-weight: 700 !important;
   background-color: #f0f2f2;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Open Sans", "Helvetica Neue", sans-serif;
 }
-.active i {
+#active i {
   color: #0c0d0e !important;
   font-weight: 700 !important;
 }

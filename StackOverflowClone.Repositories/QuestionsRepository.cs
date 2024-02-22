@@ -12,7 +12,7 @@ namespace StackOverflowClone.Repositories
     {
         void InsertQuestion(Question question);
         void UpdateQuestionDetails (Question question);
-        void UpdateQuestionVoteCount (int id, int value);
+        void UpdateQuestionVoteCount (int questionId, int userId, int value);
         void UpdateQuestionAnswersCount(int id, int value);
         void UpdateQuestionViewsCount (int id, int value);
         void DeleteQuestion (int questionId);
@@ -21,10 +21,12 @@ namespace StackOverflowClone.Repositories
     }
     public class QuestionsRepository : IQuestionsRepository
     {
-        StackOverflowCloneDbContext _dbContext;
+        private readonly StackOverflowCloneDbContext _dbContext;
+        private readonly IVotesQuestionsRepository iVotesQuestionsRepo;
         public QuestionsRepository()
         {
             _dbContext = new StackOverflowCloneDbContext();
+            iVotesQuestionsRepo = new VotesQuestionsRepository();
         }
         public void DeleteQuestion(int questionId)
         {
@@ -41,6 +43,7 @@ namespace StackOverflowClone.Repositories
             List<Question> questions = _dbContext.Questions
                 .Include(i => i.Category)
                 .Include(i => i.User)
+                .Include(i => i.Answers)
                 .OrderByDescending(i => i.QuestionDateAndTime)
                 .ToList();
             return questions;
@@ -48,7 +51,7 @@ namespace StackOverflowClone.Repositories
 
         public List<Question> GetQuestionsById(int questionId)
         {
-            List<Question> questions = _dbContext.Questions.Where(i => i.QuestionID == questionId)
+            List<Question> questions = _dbContext.Questions.Include(i => i.Answers).Where(i => i.QuestionID == questionId)
                                                         .Include(i => i.Category)
                                                         .Include(i => i.User)
                                                         .ToList();
@@ -89,19 +92,36 @@ namespace StackOverflowClone.Repositories
             Question updateQuestion = _dbContext.Questions.Where(i => i.QuestionID == id).FirstOrDefault();
             if (updateQuestion != null)
             {
-                updateQuestion.AnswerCount += value;
+                updateQuestion.ViewsCount += value;
                 _dbContext.SaveChanges();
             }
         }
 
-        public void UpdateQuestionVoteCount(int id, int value)
+        public void UpdateQuestionVoteCount(int questionId, int userId, int value)
         {
-            Question updateQuestion = _dbContext.Questions.Where(i => i.QuestionID == id).FirstOrDefault();
-            if(updateQuestion != null)
+            Question updateQuestion = _dbContext.Questions.Where(i => i.QuestionID == questionId).FirstOrDefault();
+
+            var existingVote = _dbContext.VotesQuestions.FirstOrDefault(i => i.QuestionID == questionId && i.UserID == userId);
+
+            if (existingVote != null)
             {
-                updateQuestion.VoteCount += value;
-                _dbContext.SaveChanges();
+                if (existingVote.VoteValue == value)
+                {
+                    updateQuestion.VoteCount -= value;
+                }
+                else
+                {
+                    updateQuestion.VoteCount += value - existingVote.VoteValue;
+                }
+                existingVote.VoteValue = value;
             }
+            else
+            {
+                // User hasn't voted before
+                updateQuestion.VoteCount += value;
+                iVotesQuestionsRepo.UpdateVote(questionId, userId, value);
+            }
+            _dbContext.SaveChanges();
         }
     }
 }

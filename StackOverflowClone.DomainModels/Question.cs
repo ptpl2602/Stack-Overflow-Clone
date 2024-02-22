@@ -18,7 +18,7 @@ namespace StackOverflowClone.DomainModels
         public DateTime QuestionDateAndTime { get; set; }
         public int VoteCount { get; set; }
         public int AnswerCount { get; set; }
-        public int ViewCount { get; set; }
+        public int ViewsCount { get; set; }
 
         [ForeignKey("UserID")]
         public User User { get; set; }
@@ -29,5 +29,6 @@ namespace StackOverflowClone.DomainModels
         public Category Category { get; set; }
 
         public virtual List<Answer> Answers { get; set; }
+        public virtual List<VotesQuestion> VotesQuestions { get; set; }
     }
 }

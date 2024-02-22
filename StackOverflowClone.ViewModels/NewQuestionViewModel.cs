@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Globalization;
 
 namespace StackOverflowClone.ViewModels
 {
@@ -26,5 +27,12 @@ namespace StackOverflowClone.ViewModels
         public int AnswersCount { get; set; }
         [Required]
         public int ViewsCount { get; set; }
+
+        public DateTime GetDateTime()
+        {
+            string dateTimeString = $"{QuestionDateAndTime}";
+            return DateTime.ParseExact(dateTimeString, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture);
+            //return DateTime.Parse(string.Format("{0} {1}", Date, Time));
+        }
     }
 }
