@@ -13,12 +13,13 @@ namespace StackOverflowClone.ServiceLayer
 {
     public interface IQuestionsService
     {
-        void InsertQuestion(QuestionViewModel viewModel);
+        void InsertQuestion(NewQuestionViewModel viewModel);
         void UpdateQuestionDetails(EditQuestionViewModel viewModel);
         void UpdateQuestionVoteCount(int questionId, int userId, int value);
         void UpdateQuestionAnswersCount(int id, int value);
         void UpdateQuestionViewsCount(int id, int value);
         void DeleteQuestion(int questionId);
+        /*void SetAcceptedAnswer (int questionId, int answerId);*/
         List<QuestionViewModel> GetQuestions();
         QuestionViewModel GetQuestionById(int questionId, int UserId);
     }
@@ -31,11 +32,11 @@ namespace StackOverflowClone.ServiceLayer
             iQuestionsRepo = new QuestionsRepository();
 
         }
-        public void InsertQuestion(QuestionViewModel viewModel)
+        public void InsertQuestion(NewQuestionViewModel viewModel)
         {
             var config = new MapperConfiguration(i => { i.CreateMap<NewQuestionViewModel, Question>(); i.IgnoreUnmapped(); });
             IMapper mapper = config.CreateMapper();
-            Question question = mapper.Map<QuestionViewModel, Question>(viewModel);
+            Question question = mapper.Map<NewQuestionViewModel, Question>(viewModel);
             iQuestionsRepo.InsertQuestion(question);
         }
 
@@ -62,6 +63,10 @@ namespace StackOverflowClone.ServiceLayer
         {
             iQuestionsRepo.DeleteQuestion(questionId);
         }
+/*        public void SetAcceptedAnswer(int questionId, int answerId)
+        {
+            iQuestionsRepo.SetAcceptedAnswer(questionId, answerId);
+        }*/
         public List<QuestionViewModel> GetQuestions()
         {
             List<Question> questions = iQuestionsRepo.GetQuestions();

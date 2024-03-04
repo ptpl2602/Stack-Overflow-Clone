@@ -155,6 +155,23 @@
     margin: 0.3rem;
 }
 
+.btn-outline-red {
+    @include fontNormal();
+    @include customButton($red-dark, $white, $white);
+    line-height: 1.5rem;
+    padding: 1rem;
+    margin: 0.3rem;
+
+    &:hover {
+        background-color: $red-hover;
+    }
+
+    &:active {
+        background-color: $red-active;
+    }
+}
+
+
 
 /*.btn-vote {
     border: 0.1rem solid $gray-border;
@@ -235,5 +252,40 @@
 
     path {
         fill: #e7710c;
+    }
+}
+
+.btn-accept-answer {
+    border: 0;
+    background-color: $white;
+    border-radius: 20rem;
+    padding: 0.6rem;
+
+    path {
+        fill: $black;
+    }
+
+    &:hover {
+        background-color: $gray-hover;
+    }
+}
+
+.btn-accept-answer-green {
+    border: 0;
+    background-color: $white;
+    border-radius: 20rem;
+    padding: 0.6rem;
+
+    path {
+        fill: $green;
+    }
+}
+
+.btn-func-link {
+    border: transparent;
+    background-color: transparent;
+
+    &:hover {
+        color: $gray-black;
     }
 }

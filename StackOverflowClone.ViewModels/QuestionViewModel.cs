@@ -29,6 +29,8 @@ namespace StackOverflowClone.ViewModels
         public int AnswersCount { get; set; }
         [Required]
         public int ViewsCount { get; set; }
+        public int AnswerID { get; set; }
+        public AnswerViewModel Answer {  get; set; }
 
         public UserViewModel User { get; set; }
         public CategoryViewModel Category { get; set; }

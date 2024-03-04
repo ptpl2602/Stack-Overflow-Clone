@@ -27,7 +27,6 @@ namespace StackOverflowClone.DomainModels
         public int CategoryID { get; set; }
         [ForeignKey("CategoryID")]
         public Category Category { get; set; }
-
         public virtual List<Answer> Answers { get; set; }
         public virtual List<VotesQuestion> VotesQuestions { get; set; }
     }

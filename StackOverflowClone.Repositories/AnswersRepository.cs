@@ -46,6 +46,7 @@ namespace StackOverflowClone.Repositories
         {
             List<Answer> answers = _dbContext.Answers.Where(i => i.AnswerID == answerId)
                                                             .Include(i => i.User)
+                                                            .Include(i => i.Question)
                                                             .ToList();
             return answers;
         }
@@ -107,6 +108,7 @@ namespace StackOverflowClone.Repositories
             if(updateAnswer != null)
             {
                 updateAnswer.AnswerText = answer.AnswerText;
+                updateAnswer.AnswerDateAndTime = DateTime.Now;
                 _dbContext.SaveChanges();
 
                 iQuestionRepo.UpdateQuestionAnswersCount(answer.AnswerID, -1);

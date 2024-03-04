@@ -1,0 +1,108 @@
+﻿
+@{
+    ViewBag.Title = "CreateQuestion";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="content">
+    <div class="d-flex bg-img-ask">
+        <h1 class="fc-black26 fw-bold my-5 d-flex align-items-center">Ask a public question</h1>
+    </div>
+    <div class="row mt-5">
+        <div class="col-9">
+            <div class="card border-primary-subtle">
+                <div class="card-body bg-primary bg-opacity-10 border-primary-subtle">
+                    <h2 class="font-black21 fw-normal">Writing a good question</h2>
+                    <p class="font-black15">You’re ready to <a href="#" class="text-decoration-none">ask</a> a programming-related question and this form will help guide you through the process. Looking to ask a non-programming question? See the topics here to find a relevant site.</p>
+                    <p class="font-black13 fw-bolder">Steps</p>
+                    <ul>
+                        <li class="font-black13 ms-3">Summarize your problem in a one-line title.</li>
+                        <li class="font-black13 ms-3">Describe your problem in more detail.</li>
+                        <li class="font-black13 ms-3">Describe what you tried and what you expected to happen.</li>
+                        <li class="font-black13 ms-3">Add “tags” which help surface your question to members of the community.</li>
+                        <li class="font-black13 ms-3">Review your question and post it to the site.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-12 col-sm-9">
+            <form class="mb-5" novalidate="novalidate" action="/questions/create" method="post">
+                @Html.AntiForgeryToken()
+                <div class="content-ask-question">
+                    <div class="d-flex flex-column align-items-start mb-4">
+                        <h4 class="font-black15 fw-bold">Title</h4>
+                        <span class="font-tag12 mb-2">Be specific and imagine you’re asking a question to another person.</span>
+                        <input type="text" class="form-control font-tag-black600" id="display-name" required="required" autofocus="autofocus" placeholder="e.g Is there an R function for finding index of an element in a vetor?">
+                    </div>
+                </div>
+                <div class="content-ask-question">
+                    <div class="d-flex flex-column align-items-start mb-4">
+                        <h4 class="font-black15 fw-bold">What are the details of your problem?</h4>
+                        <span class="font-tag12 mb-2">Introduce the problem and expand on what you put in the title. Minimum 20 characrters.</span>
+                        <textarea type="text" class="form-control font-tag-black600" required="required" rows="10"></textarea>
+                    </div>
+                </div>
+                <div class="content-ask-question">
+                    <div class="d-flex flex-column align-items-start mb-4">
+                        <h4 class="font-black15 fw-bold">Tags</h4>
+                        <span class="font-tag12 mb-2">Add up to a tag to describe what your question is about. Start typing to see suggestions.</span>
+                        <input type="text" class="form-control font-tag-black600" id="display-name" placeholder="e.g Is there an R function for finding index of an element in a vetor?">
+                        <select class="form-select form-control font-tag-black600" name="CategoryID" aria-label="Select tag" id="tags">
+                            <option selected>Select topic</option>
+                            @foreach(var i in ViewBag.Categories)
+                            {
+                                <option value=@i.CategoryID>@i.CategoryName</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center justify-content-start pt-3 mb-2 mt-5">
+                    <button type="submit" class="btn-inline-blue mx-2">Post your question</button>
+                    <a href="/allquestions" class="btn-outline-red text-decoration-none mx-2">Discard draft</a>
+                </div>
+                @Html.ValidationSummary()
+            </form>
+
+        </div>
+        <div class="col-3">
+            <div class="card">
+                <div class="card-header fs-4 font-black15 m-1 p-3 bg-light bg-opacity-10">
+                    Writing a good title
+                </div>
+                <div class="card-body m-3 p-0 d-flex">
+                    <svg aria-hidden="true" class="svg-spot mx-2" width="75" height="75" viewBox="0 0 48 48"><path d="M31.52 5.2a.34.34 0 0 0-.46.08L7 39.94a.34.34 0 0 0-.06.16l-.54 5.21c-.03.26.24.45.48.34l4.77-2.29c.05-.02.1-.06.13-.1L35.83 8.58a.34.34 0 0 0-.09-.47l-4.22-2.93Z" opacity=".2"></path><path d="M28.53 2.82c.4-.58 1.2-.73 1.79-.32l4.22 2.92c.58.4.72 1.2.32 1.79L10.82 41.87c-.13.18-.3.33-.5.43l-4.77 2.28c-.9.44-1.93-.29-1.83-1.29l.55-5.2c.02-.22.1-.43.22-.6L28.53 2.81Zm4.43 3.81L29.74 4.4 28.2 6.6l3.22 2.24 1.53-2.21Zm-2.6 3.76-3.23-2.24-20.32 29.3 3.22 2.24 20.32-29.3ZM5.7 42.4 8.62 41l-2.57-1.78-.34 3.18Zm35.12.3a1 1 0 1 0-.9-1.78 35 35 0 0 1-7.94 3.06c-1.93.43-3.8.3-5.71-.04-.97-.17-1.93-.4-2.92-.64l-.3-.07c-.9-.21-1.81-.43-2.74-.62-2.9-.58-6.6-.49-9.43.65a1 1 0 0 0 .74 1.86c2.4-.96 5.68-1.07 8.3-.55.88.18 1.77.4 2.66.6l.3.08c1 .24 2 .48 3.03.66 2.07.37 4.22.53 6.5.02 3-.67 5.77-1.9 8.41-3.22Z"></path></svg>
+                    <div class="ms-3">
+                        <p class="font-tag12 fc-black">Your title should summarize the problem.</p>
+                        <p class="font-tag12 fc-black">You might find that you have a better idea of your title after writing out the rest of the question.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card mt-4">
+                <div class="card-header fs-4 font-black15 m-1 p-3 bg-light bg-opacity-10">
+                    Introduce the problem
+                </div>
+                <div class="card-body m-3 p-0 d-flex">
+                    <svg aria-hidden="true" class="svg-spot mx-2" width="75" height="75" viewBox="0 0 48 48"><path d="M31.52 5.2a.34.34 0 0 0-.46.08L7 39.94a.34.34 0 0 0-.06.16l-.54 5.21c-.03.26.24.45.48.34l4.77-2.29c.05-.02.1-.06.13-.1L35.83 8.58a.34.34 0 0 0-.09-.47l-4.22-2.93Z" opacity=".2"></path><path d="M28.53 2.82c.4-.58 1.2-.73 1.79-.32l4.22 2.92c.58.4.72 1.2.32 1.79L10.82 41.87c-.13.18-.3.33-.5.43l-4.77 2.28c-.9.44-1.93-.29-1.83-1.29l.55-5.2c.02-.22.1-.43.22-.6L28.53 2.81Zm4.43 3.81L29.74 4.4 28.2 6.6l3.22 2.24 1.53-2.21Zm-2.6 3.76-3.23-2.24-20.32 29.3 3.22 2.24 20.32-29.3ZM5.7 42.4 8.62 41l-2.57-1.78-.34 3.18Zm35.12.3a1 1 0 1 0-.9-1.78 35 35 0 0 1-7.94 3.06c-1.93.43-3.8.3-5.71-.04-.97-.17-1.93-.4-2.92-.64l-.3-.07c-.9-.21-1.81-.43-2.74-.62-2.9-.58-6.6-.49-9.43.65a1 1 0 0 0 .74 1.86c2.4-.96 5.68-1.07 8.3-.55.88.18 1.77.4 2.66.6l.3.08c1 .24 2 .48 3.03.66 2.07.37 4.22.53 6.5.02 3-.67 5.77-1.9 8.41-3.22Z"></path></svg>
+                    <div class="ms-3">
+                        <p class="font-tag12 fc-black">Explain how you encountered the problem you’re trying to solve, and any difficulties that have prevented you from solving it yourself.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card" style="margin-top: 184px;">
+                <div class="card-header fs-4 font-black15 m-1 p-3 bg-light bg-opacity-10">
+                    Adding tags
+                </div>
+                <div class="card-body m-3 p-0 d-flex">
+                    <svg aria-hidden="true" class="svg-spot mx-2" width="75" height="75" viewBox="0 0 48 48"><path d="M31.52 5.2a.34.34 0 0 0-.46.08L7 39.94a.34.34 0 0 0-.06.16l-.54 5.21c-.03.26.24.45.48.34l4.77-2.29c.05-.02.1-.06.13-.1L35.83 8.58a.34.34 0 0 0-.09-.47l-4.22-2.93Z" opacity=".2"></path><path d="M28.53 2.82c.4-.58 1.2-.73 1.79-.32l4.22 2.92c.58.4.72 1.2.32 1.79L10.82 41.87c-.13.18-.3.33-.5.43l-4.77 2.28c-.9.44-1.93-.29-1.83-1.29l.55-5.2c.02-.22.1-.43.22-.6L28.53 2.81Zm4.43 3.81L29.74 4.4 28.2 6.6l3.22 2.24 1.53-2.21Zm-2.6 3.76-3.23-2.24-20.32 29.3 3.22 2.24 20.32-29.3ZM5.7 42.4 8.62 41l-2.57-1.78-.34 3.18Zm35.12.3a1 1 0 1 0-.9-1.78 35 35 0 0 1-7.94 3.06c-1.93.43-3.8.3-5.71-.04-.97-.17-1.93-.4-2.92-.64l-.3-.07c-.9-.21-1.81-.43-2.74-.62-2.9-.58-6.6-.49-9.43.65a1 1 0 0 0 .74 1.86c2.4-.96 5.68-1.07 8.3-.55.88.18 1.77.4 2.66.6l.3.08c1 .24 2 .48 3.03.66 2.07.37 4.22.53 6.5.02 3-.67 5.77-1.9 8.41-3.22Z"></path></svg>
+                    <div class="ms-3">
+                        <p class="font-tag12 fc-black">Tags help ensure that your question will get attention from the right people.</p>
+                        <p class="font-tag12 fc-black">Add tags for product lines, projects, teams, and the specific technologies or languages used.</p>
+                        <a href="#" class="text-decoration-none font-tag12 fc-blue">Learn more about tagging</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

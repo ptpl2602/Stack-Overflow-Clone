@@ -29,3 +29,34 @@
     height: 2.4rem;
     width: 2.4rem;
 }
+
+//Breakpoint---------------------------
+@mixin xs {
+    @media (min-width: $breakpoint-xs) {
+        @content;
+    }
+}
+
+@mixin sm {
+    @media (min-width: $breakpoint-sm) {
+        @content;
+    }
+}
+
+@mixin md {
+    @media (min-width: $breakpoint-md) {
+        @content;
+    }
+}
+
+@mixin lg {
+    @media (min-width: $breakpoint-lg) {
+        @content;
+    }
+}
+
+@mixin xl {
+    @media (min-width: $breakpoint-xl) {
+        @content;
+    }
+}

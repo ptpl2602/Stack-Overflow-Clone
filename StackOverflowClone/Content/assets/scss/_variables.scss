@@ -18,12 +18,23 @@ $gray-border: #d5d8da;
 $gray-border2: #babfc5;
 $gray-scrollbar: #cdcccd;
 $gray-focus: #0c0d0e;
+$red: #c93332;
+$red-active: #eeaaaa;
+$red-hover: #fae1e1;
+$red-dark: #9c2121;
 $black: #242729;
 $white: #f8fbfa;
-
+$green: #18864b;
 
 //Fonts---------------------------------
 $font-primary: "Source Sans Pro", sans-serif;
 $font-secondary: "Robotos Slab", sans-serif;
 $font-tag: 'Cascadia Mono', 'Segoe UI', monospace;
 $font-size: 62.5%;
+
+//Breakpoints--------------------------------
+$breakpoint-xs: 0;
+$breakpoint-sm: 57.6rem;
+$breakpoint-md: 76.8rem;
+$breakpoint-lg: 99.2rem;
+$breakpoint-xl: 120rem;

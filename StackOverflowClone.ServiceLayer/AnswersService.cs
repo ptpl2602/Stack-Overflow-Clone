@@ -13,9 +13,11 @@ namespace StackOverflowClone.ServiceLayer
     public interface IAnswersService
     {
         void InsertAnswer(NewAnswerViewModel viewModel);
+        void UpdateAnswer(EditAnswerViewModel viewModel);
         void DeleteAnswer(int answerId);
         void UpdateAnswertVotesCount(int answerId, int userId, int value);
         int GetVoteCountByAnswerId (int answerId);
+        void AcceptAnswer (int answerId);
         List<AnswerViewModel> GetAnswersByQuestionId(int questionId);
         AnswerViewModel GetAnswersByAnswerId(int answerId);
     }
@@ -82,6 +84,11 @@ namespace StackOverflowClone.ServiceLayer
         public int GetVoteCountByAnswerId (int answerId)
         {
             return iAnswerRepo.GetVoteCountByAnswerId(answerId) ;
+        }
+
+        public void AcceptAnswer(int answerId)
+        {
+            iAnswerRepo.AcceptAnswer(answerId);
         }
     }
 }

@@ -2892,6 +2892,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QuestionsController.cs" />
+    <Compile Include="CustomFilters\UserAuthorizationFilterAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2926,6 +2927,7 @@
     <Content Include="Views\Home\Questions.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\Questions\View.cshtml" />
+    <Content Include="Views\Questions\CreateQuestion.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

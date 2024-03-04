@@ -22,11 +22,12 @@ namespace StackOverflowClone.ViewModels
         [Required]
         public int CategoryID { get; set; }
         [Required]
-        public int VotesCount { get; set; }
+        public int VoteCount { get; set; }
         [Required]
         public int AnswersCount { get; set; }
         [Required]
         public int ViewsCount { get; set; }
+        public int AnswerID { get; set; }
 
         public DateTime GetDateTime()
         {

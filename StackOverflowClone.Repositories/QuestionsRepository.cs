@@ -16,6 +16,7 @@ namespace StackOverflowClone.Repositories
         void UpdateQuestionAnswersCount(int id, int value);
         void UpdateQuestionViewsCount (int id, int value);
         void DeleteQuestion (int questionId);
+        /*void SetAcceptedAnswer(int questionId, int answerId);*/
         List<Question> GetQuestions ();
         List<Question> GetQuestionsById (int questionId);
     }
@@ -23,6 +24,7 @@ namespace StackOverflowClone.Repositories
     {
         private readonly StackOverflowCloneDbContext _dbContext;
         private readonly IVotesQuestionsRepository iVotesQuestionsRepo;
+        private readonly IQuestionsRepository iQuestionsRepo;
         public QuestionsRepository()
         {
             _dbContext = new StackOverflowCloneDbContext();
@@ -41,11 +43,11 @@ namespace StackOverflowClone.Repositories
         public List<Question> GetQuestions()
         {
             List<Question> questions = _dbContext.Questions
-                .Include(i => i.Category)
-                .Include(i => i.User)
-                .Include(i => i.Answers)
-                .OrderByDescending(i => i.QuestionDateAndTime)
-                .ToList();
+                                        .Include(i => i.Category)
+                                        .Include(i => i.User)
+                                        .Include(i => i.Answers)
+                                        .OrderByDescending(i => i.QuestionDateAndTime)
+                                        .ToList();
             return questions;
         }
 
@@ -123,5 +125,15 @@ namespace StackOverflowClone.Repositories
             }
             _dbContext.SaveChanges();
         }
+
+        /*public void SetAcceptedAnswer (int questionId, int answerId)
+        {
+            Question question = _dbContext.Questions.FirstOrDefault(i => i.QuestionID == questionId);
+            if(question != null)
+            {
+                question.AnswerID = answerId;
+                _dbContext.SaveChanges();
+            }
+        }*/
     }
 }

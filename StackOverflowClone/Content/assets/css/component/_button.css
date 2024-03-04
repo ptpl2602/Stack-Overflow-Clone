@@ -251,6 +251,27 @@
   margin: 0.3rem;
 }
 
+.btn-outline-red {
+  font-size: 1.3rem;
+  color: #636B74;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Open Sans", "Helvetica Neue", sans-serif;
+  background-color: #f8fbfa;
+  color: #9c2121;
+  text-align: center;
+  border-radius: 0.6rem;
+  padding: 0.8rem 1.04rem;
+  border: 0.1rem solid #f8fbfa;
+  line-height: 1.5rem;
+  padding: 1rem;
+  margin: 0.3rem;
+}
+.btn-outline-red:hover {
+  background-color: #fae1e1;
+}
+.btn-outline-red:active {
+  background-color: #eeaaaa;
+}
+
 /*.btn-vote {
     border: 0.1rem solid $gray-border;
     border-radius: 20rem;
@@ -322,4 +343,35 @@
 }
 .btn-vote-color-down path {
   fill: #e7710c;
+}
+
+.btn-accept-answer {
+  border: 0;
+  background-color: #f8fbfa;
+  border-radius: 20rem;
+  padding: 0.6rem;
+}
+.btn-accept-answer path {
+  fill: #242729;
+}
+.btn-accept-answer:hover {
+  background-color: #e2e7e8;
+}
+
+.btn-accept-answer-green {
+  border: 0;
+  background-color: #f8fbfa;
+  border-radius: 20rem;
+  padding: 0.6rem;
+}
+.btn-accept-answer-green path {
+  fill: #18864b;
+}
+
+.btn-func-link {
+  border: transparent;
+  background-color: transparent;
+}
+.btn-func-link:hover {
+  color: #3b4045;
 }

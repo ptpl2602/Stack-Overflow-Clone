@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using StackOverflowClone.ViewModels;
 using StackOverflowClone.ServiceLayer;
 using System.Security.Cryptography;
+using StackOverflowClone.CustomFilters;
 
 namespace StackOverflowClone.Controllers
 {
@@ -98,6 +99,7 @@ namespace StackOverflowClone.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [UserAuthorizationFilter]   //Means to only do after user login/sign up
         public ActionResult ChangeProfile()
         {
             int uid = Convert.ToInt32(Session["CurrentUserID"]);
@@ -115,6 +117,7 @@ namespace StackOverflowClone.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [UserAuthorizationFilter]
         public ActionResult ChangeProfile(EditUserDetailsViewModel viewModel)
         {
             if (ModelState.IsValid)
@@ -131,6 +134,7 @@ namespace StackOverflowClone.Controllers
             }
         }
 
+        [UserAuthorizationFilter]
         public ActionResult ChangePassword()
         {
             int uid = Convert.ToInt32(Session["CurrentUserID"]);
@@ -147,6 +151,7 @@ namespace StackOverflowClone.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [UserAuthorizationFilter]
         public ActionResult ChangePassword(EditUserPasswordViewModel viewModel)
         {
             if (ModelState.IsValid)

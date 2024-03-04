@@ -396,9 +396,102 @@
 
 .question-user-info {
     background-color: $blue-background-question;
-    width: 20rem;
+    width: 21rem;
     height: 6.8rem;
     padding: 0.5rem 0.6rem 0.7rem 0.7rem;
     border-radius: 0.6rem;
     margin: 0.4rem 0;
+}
+
+//Add questions---------------------
+.content {
+    @include xs {
+        padding: 0 0.85rem 2.4rem 0.85rem;
+
+        .card {
+            display: none;
+        }
+
+        .card-body {
+            display: none;
+        }
+    }
+
+    @include sm {
+        padding: 0 1.65rem 2.4rem 1.65rem;
+
+        .card {
+            display: block;
+        }
+
+        .card-body {
+            display: block;
+        }
+    }
+
+    .card-body {
+        padding: 2.4rem;
+    }
+}
+
+.bg-img-ask {
+    width: 100%;
+
+    @include xs {
+        height: 7.5rem;
+    }
+
+    @include sm {
+        height: 8.6rem;
+    }
+
+    @include md {
+        height: 13rem;
+        background-image: url('https://cdn.sstatic.net/Img/ask/background.svg?v=c56910988bdf');
+        background-repeat: no-repeat;
+        background-position: right;
+    }
+
+    h1 {
+        font-size: 2.7rem;
+        line-height: 3.5rem;
+    }
+}
+
+.content-ask-question {
+    background-color: white;
+    padding: 2.4rem;
+    border-radius: 0.4rem;
+    border: solid 0.1rem $gray-border;
+    margin-bottom: 1.4rem;
+
+    input {
+        height: 3.3rem;
+        margin-top: 0.4rem;
+        padding: 0.78rem 0.9rem;
+        border: 0.1rem solid $gray-border2;
+        @include fontNormal();
+        color: $black;
+        border-radius: 0.6rem;
+    }
+
+    select {
+        height: 3.3rem;
+        margin-top: 0.4rem;
+        padding: 0.78rem 0.9rem;
+        border: 0.1rem solid $gray-border2;
+        @include fontNormal();
+        color: $black;
+        border-radius: 0.6rem;
+    }
+
+    textarea {
+        height: 20rem;
+        margin-top: 0.4rem;
+        padding: 0.78rem 0.9rem;
+        border: 0.1rem solid $gray-border2;
+        @include fontNormal();
+        color: $black;
+        border-radius: 0.4rem;
+    }
 }
