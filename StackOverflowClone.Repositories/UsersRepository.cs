@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -61,7 +62,9 @@ namespace StackOverflowClone.Repositories
 
         public List<User> GetUsers()
         {
-            List<User> users = _dbContext.Users.Where(i => i.IsAdmin == false).OrderBy(i => i.Name).ToList();
+            List<User> users = _dbContext.Users.Where(i => i.IsAdmin == false)
+                                                .OrderBy(i => i.Name)
+                                                .ToList();
             return users;
         }
 

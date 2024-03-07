@@ -2928,6 +2928,7 @@
     <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\Questions\View.cshtml" />
     <Content Include="Views\Questions\CreateQuestion.cshtml" />
+    <Content Include="Views\Home\User.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

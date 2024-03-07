@@ -12,12 +12,14 @@ namespace StackOverflowClone.Controllers
     {
         private IQuestionsService iQuestionService;
         private ICategoriesService iCategoryService;
-     
+        private IUsersService iUserService;
 
-        public HomeController(IQuestionsService iQuestionService, ICategoriesService iCategoryService)
+
+        public HomeController(IQuestionsService iQuestionService, ICategoriesService iCategoryService, IUsersService iUserService)
         {
             this.iQuestionService = iQuestionService;
             this.iCategoryService = iCategoryService;
+            this.iUserService = iUserService;
         }
 
         public ActionResult Index()
@@ -52,6 +54,14 @@ namespace StackOverflowClone.Controllers
             List<QuestionViewModel> listQuestions = this.iQuestionService.GetQuestions().Where(i => i.QuestionName.ToLower().Contains(str.ToLower()) || i.Category.CategoryName.ToLower().Contains(str.ToLower())).ToList();
             ViewBag.str = str;
             return View(listQuestions);
+        }
+
+        [Route("users")]
+        public ActionResult User()
+        {
+            List<UserViewModel> listUsers = this.iUserService.GetUsers();
+            ViewBag.UserCount = listUsers.Count;
+            return View(listUsers);
         }
     }
 }

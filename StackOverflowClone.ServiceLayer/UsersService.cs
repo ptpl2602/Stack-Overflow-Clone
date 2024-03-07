@@ -71,6 +71,14 @@ namespace StackOverflowClone.ServiceLayer
             var config = new MapperConfiguration(i => { i.CreateMap<User, UserViewModel>(); i.IgnoreUnmapped(); });
             IMapper mapper = config.CreateMapper();
             List<UserViewModel> viewModel = mapper.Map<List<User>, List<UserViewModel>>(users);
+
+            foreach(var i in viewModel)
+            {
+                i.AnswerCount = GetAnswerCountByUserId(i.UserID);
+                i.QuestionCount = GetQuestionCountByUserId(i.UserID);
+                i.TagCount = GetTagCountByUserId(i.UserID);
+            }
+
             return viewModel;
         }
 

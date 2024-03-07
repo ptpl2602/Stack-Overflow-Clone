@@ -1,0 +1,30 @@
+﻿@model List<StackOverflowClone.ViewModels.UserViewModel>
+
+@{
+    ViewBag.Title = "Users";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<h1 class="font-black26 mt-3">Users</h1>
+<h3 class="font-black19 mt-5">@ViewBag.UserCount users</h3>
+
+<div class="row pt-3">
+    @foreach(var i in Model)
+    {
+        <div class="col-3 pb-4">
+            <div class="d-flex align-items-stretch">
+                <img src="https://www.gravatar.com/avatar/4bf8226f1b18a595958037b0e6f221c4?s=48&d=identicon&r=PG" class="rounded me-3 mt-2" alt="" srcset="" width="48px" height="48px">
+                <div class="div">
+                    <a href="/account/profile/@i.UserID" class="font-black15 fc-blue-hover text-decoration-none">@i.Name</a>
+                    <p class="font-tag12 mb-2 mt-2">@i.QuestionCount questions</p>
+                    <p class="font-tag12 mb-2">@i.AnswerCount answers</p>
+                    <p class="font-tag12 mb-2">@i.TagCount tags used</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<script>
+    $("a[href='/users']").parent().attr('id', 'active')
+</script>
