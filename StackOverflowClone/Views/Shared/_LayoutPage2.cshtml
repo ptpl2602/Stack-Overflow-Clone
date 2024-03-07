@@ -101,7 +101,7 @@
 
                 @if (Session["CurrentUserName"] != null)
                 {
-                    <a href="/account/profile" class="mx-1 text-decoration-none nav-link-profile">
+                    <a href="/account/profile/@Convert.ToInt32(Session["CurrentUserID"])" class="mx-1 text-decoration-none nav-link-profile">
                         <img class="img-avatar me-2" src="https://www.gravatar.com/avatar/4bf8226f1b18a595958037b0e6f221c4?s=48&d=identicon&r=PG" alt="Default Avatar">
                         @Session["CurrentUserName"]
                     </a>

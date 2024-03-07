@@ -288,6 +288,15 @@
     z-index: 100;
 }
 
+#toggle-password2 {
+    position: absolute;
+    top: 4rem;
+    right: 1rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 100;
+}
+
 //----------------------Profile--------------------
 .avatar-frame {
     border: 0.1rem solid $gray-border;

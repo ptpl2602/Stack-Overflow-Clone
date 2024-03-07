@@ -166,8 +166,20 @@
                             </div>
                         </div>
                     </form>
-                    <a href="/account/login" class="btn-outline-blue mx-1 text-decoration-none">Log in</a>
-                    <a href="/account/signup" class="btn-inline-blue mx-1 text-decoration-none">Sign up</a>
+                    @if (Session["CurrentUserName"] == null)
+                    {
+                        <a href="/account/login" class="btn-outline-blue fw-normal mx-1 text-decoration-none">Log in</a>
+                        <a href="/account/signup" class="btn-inline-blue fw-normal mx-1 text-decoration-none">Sign up</a>
+                    }
+
+
+                    @if (Session["CurrentUserName"] != null)
+                    {
+                        <a href="/account/profile" class="mx-1 text-decoration-none nav-link-profile">
+                            <img class="img-avatar me-2" src="https://www.gravatar.com/avatar/4bf8226f1b18a595958037b0e6f221c4?s=48&d=identicon&r=PG" alt="Default Avatar">
+                            @Session["CurrentUserName"]
+                        </a>
+                    }
                 </div>
             </nav>
         </header>

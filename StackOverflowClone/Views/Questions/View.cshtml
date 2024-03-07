@@ -36,13 +36,6 @@
     <div class="col-9 pe-4">
         <div class="row">
             <div class="col-1 ps-0 d-flex flex-column justify-content-start align-items-center">
-                @*<button class="btn-vote">
-            <svg aria-hidden="true" class="svg-icon iconArrowUp" width="18" height="18" viewBox="0 0 18 18"><path fill="#242729" d="M1 12h16L9 4l-8 8Z"></path></svg>
-        </button>
-        <span class="content-vote-count py-3">@Model.VotesCount</span>
-        <button class="btn-vote">
-            <svg aria-hidden="true" class="svg-icon iconArrowDown" width="18" height="18" viewBox="0 0 18 18"><path fill="#242729" d="M1 6h16l-8 8-8-8Z"></path></svg>
-        </button>*@
                 @if (Session["CurrentUserName"] != null && Convert.ToInt32(Session["CurrentUserID"]) != Model.UserID)
                 {
                     if (Model.CurrentUserVoteType == 1)
@@ -103,7 +96,7 @@
                                 <img src="https://www.gravatar.com/avatar/4bf8226f1b18a595958037b0e6f221c4?s=48&d=identicon&r=PG" class="rounded me-3" alt="" srcset="" width="32px" height="32px">
                                 @if (Convert.ToInt32(Session["CurrentUserID"]) != Model.UserID)
                                 {
-                                    <a href="#" class="font-black13 fc-blue-hover text-decoration-none">@Model.User.Name</a>
+                                    <a href="/account/profile/@Model.UserID" class="font-black13 fc-blue-hover text-decoration-none">@Model.User.Name</a>
                                 }
                                 else
                                 {
@@ -227,7 +220,7 @@
                                     <p class="font-gray13 mb-2 fw-normal">answered @Model.Answers[i].AnswerDateAndTime</p>
                                     <div class="d-flex align-items-center">
                                         <img src="https://www.gravatar.com/avatar/4bf8226f1b18a595958037b0e6f221c4?s=48&d=identicon&r=PG" class="rounded me-3" alt="" srcset="" width="32px" height="32px">
-                                        <a href="#" class="font-black13 fc-blue-hover text-decoration-none">@Model.Answers[i].User.Name</a>
+                                        <a href="/account/profile/@Model.Answers[i].UserID" class="font-black13 fc-blue-hover text-decoration-none">@Model.Answers[i].User.Name</a>
                                     </div>
                                 </div>
                             </div>
@@ -239,13 +232,14 @@
                             </div>
                             <div class="col-8 ms-4 mb-4 mt-2 p-0">
                                 <button class="font-gray13 btn-func-link button-edit mt-3 mb-2">Edit</button>
+                                <button class="font-gray13 fc-red-hover btn-func-link mt-3 mb-2">Delete</button>
                                 <form class="needs-validation hidden mt-3" novalidate="novalidate" action="/questions/editanswer" method="post">
                                     <div class="col-12 mb-3">
                                         @Html.AntiForgeryToken()
                                         <input type="hidden" name="AnswerID" value="@Model.Answers[i].AnswerID" />
                                         <input type="hidden" name="QuestionID" value="@Model.Answers[i].QuestionID" />
                                         <div class="mb-3">
-                                            <textarea class="form-control font-black13 border border-secondary-subtle p-3" rows="10" placeholder="Enter answer with minium 30 characters." name="AnswerText">@Model.Answers[i].AnswerText</textarea>
+                                            <textarea class="form-control font-black13 fs-5 border border-secondary-subtle p-3" rows="10" placeholder="Enter answer with minium 30 characters." name="AnswerText">@Model.Answers[i].AnswerText</textarea>
                                         </div>
                                     </div>
                                     <div class="col-12 mb-5">
@@ -259,43 +253,10 @@
                                     <p class="font-gray13 mb-2 fw-normal">answered @Model.Answers[i].AnswerDateAndTime</p>
                                     <div class="d-flex align-items-center">
                                         <img src="https://www.gravatar.com/avatar/4bf8226f1b18a595958037b0e6f221c4?s=48&d=identicon&r=PG" class="rounded me-3" alt="" srcset="" width="32" height="32">
-                                        <a href="#" class="font-black13 fc-blue-hover text-decoration-none">you</a>
+                                        <a href="/account/profile/@Convert.ToInt32(Session["CurrentUserID"])" class="font-black13 fc-blue-hover text-decoration-none">you</a>
                                     </div>
                                 </div>
                             </div>
-                            //----
-                            @*<div class="col ms-4 mb-4 mt-2 p-0 d-flex justify-content-between">
-                <div class="row">
-                    <div class="col-12">
-                        <button class="font-gray13 btn-func-link button-edit">Edit</button>
-
-                    </div>
-                    <div class="col-12">
-                        <form class="needs-validation" novalidate="novalidate" action="/questions/editanswer" method="post">
-                            <div class="col-12 mb-3">
-                                <h4>Edit your answer</h4>
-                                @Html.AntiForgeryToken()
-                                <input type="hidden" name="AnswerID" value="@Model.Answers[i].AnswerID" />
-                                <input type="hidden" name="QuestionID" value="@Model.Answers[i].QuestionID" />
-                                <div class="mb-3">
-                                    <textarea class="form-control font-black13 border border-secondary-subtle p-3" rows="10" id="txtAnswer" placeholder="Enter answer with minium 30 characters." name="AnswerText">@Model.Answers[i].AnswerText</textarea>
-                                </div>
-                            </div>
-                            <div class="col-12 mb-5">
-                                <button type="submit" class="btn-inline-blue">Update Answer</button>
-                            </div>
-                        </form>
-
-                    </div>
-                </div>
-                <div class="question-user-info" style="background-color: #fffefe;">
-                    <p class="font-gray13 mb-2 fw-normal">answered @Model.Answers[i].AnswerDateAndTime</p>
-                    <div class="d-flex align-items-center">
-                        <img src="https://www.gravatar.com/avatar/4bf8226f1b18a595958037b0e6f221c4?s=48&d=identicon&r=PG" class="rounded me-3" alt="" srcset="" width="32" height="32">
-                        <a href="#" class="font-black13 fc-blue-hover text-decoration-none">you</a>
-                    </div>
-                </div>
-            </div>*@
                         }
                     </div>
                 </div>
@@ -309,7 +270,7 @@
                 <div class="col-12 mb-5">
                     @Html.AntiForgeryToken()
                     <input type="hidden" name="QuestionID" value="@Model.QuestionID"/>
-                    <textarea class="form-control font-black13 border border-secondary-subtle p-3" rows="10" id="txtAnswer" placeholder="Enter answer with minium 30 characters." name="AnswerText"></textarea>
+                    <textarea class="form-control font-black13 fs-5 border border-secondary-subtle p-3" rows="10" id="txtAnswer" placeholder="Enter answer with minium 30 characters." name="AnswerText"></textarea>
                 </div>
                 <div class="col-12 mb-5">
                     <button type="submit" class="btn-inline-blue text-decoration-none">Post Your Answer</button>
@@ -520,6 +481,7 @@
         $(this).closest('.col').find('.answer-content').hide();
         $(this).parent().find(".needs-validation").show();
         $(this).hide();
+        $(this).closest('.col').find('.btn-func-link').hide();
         console.log($(this).closest('.col').find('.answer-content'))
     });
 

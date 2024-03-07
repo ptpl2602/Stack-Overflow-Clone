@@ -13,6 +13,7 @@ namespace StackOverflowClone.Controllers
     public class AccountController : Controller
     {
         IUsersService iUserService;
+        IQuestionsService iQuestionsService;
         
         public AccountController(IUsersService iUserService)
         {
@@ -88,9 +89,10 @@ namespace StackOverflowClone.Controllers
             }
         }
 
-        public ActionResult Profile()
+        public ActionResult Profile(int id) 
         {
-            return View();
+            UserViewModel viewModel = this.iUserService.GetUsersByID(id);
+            return View(viewModel);
         }
 
         public ActionResult Logout()

@@ -95,7 +95,7 @@ namespace StackOverflowClone.Controllers
         [UserAuthorizationFilter]
         public ActionResult CreateQuestion(NewQuestionViewModel viewModel)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 viewModel.AnswersCount = 0;
                 viewModel.ViewsCount = 0;
@@ -107,6 +107,8 @@ namespace StackOverflowClone.Controllers
             }
             else
             {
+                List<CategoryViewModel> categories = this.iCategoryService.GetCategories();
+                ViewBag.Categories = categories;
                 ModelState.AddModelError("x", "Invalid Data");
                 return View();
             }

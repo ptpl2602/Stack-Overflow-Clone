@@ -19,6 +19,7 @@ namespace StackOverflowClone.Repositories
         /*void SetAcceptedAnswer(int questionId, int answerId);*/
         List<Question> GetQuestions ();
         List<Question> GetQuestionsById (int questionId);
+        int GetUserIdByQuestionId(int questionId);
     }
     public class QuestionsRepository : IQuestionsRepository
     {
@@ -124,6 +125,13 @@ namespace StackOverflowClone.Repositories
                 iVotesQuestionsRepo.UpdateVote(questionId, userId, value);
             }
             _dbContext.SaveChanges();
+        }
+
+        public int GetUserIdByQuestionId(int questionId)
+        {
+            var userId = _dbContext.Questions.Where(i => i.QuestionID == questionId)
+                                             .Select(i => i.UserID).FirstOrDefault();
+            return userId;
         }
 
         /*public void SetAcceptedAnswer (int questionId, int answerId)

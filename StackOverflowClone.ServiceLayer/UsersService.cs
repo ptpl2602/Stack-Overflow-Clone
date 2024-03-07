@@ -6,6 +6,7 @@ using StackOverflowClone.ViewModels;
 using StackOverflowClone.Repositories;
 using AutoMapper;
 using AutoMapper.Configuration;
+using System.Data.Entity;
 
 namespace StackOverflowClone.ServiceLayer
 {
@@ -19,6 +20,9 @@ namespace StackOverflowClone.ServiceLayer
         UserViewModel GetUsersByEmailAndPassword(string Email, string Password);
         UserViewModel GetUsersByEmail (string Email);
         UserViewModel GetUsersByID(int UserID);
+        int GetQuestionCountByUserId(int userId);
+        int GetAnswerCountByUserId(int userId);
+        int GetTagCountByUserId(int userId);
     }
     public class UsersService : IUsersService
     {
@@ -97,15 +101,31 @@ namespace StackOverflowClone.ServiceLayer
         }
         public UserViewModel GetUsersByID(int UserID)
         {
-            User user = iUsersRepo.GetUserByID(UserID).FirstOrDefault();
+            User user = iUsersRepo.GetUserByID(UserID);
             UserViewModel viewModel = null;
             if (user != null)
             {
                 var config = new MapperConfiguration(i => { i.CreateMap<User, UserViewModel>(); i.IgnoreUnmapped(); });
                 IMapper mapper = config.CreateMapper();
                 viewModel = mapper.Map<User, UserViewModel>(user);
+
+                viewModel.QuestionCount = GetQuestionCountByUserId(UserID);
+                viewModel.AnswerCount = GetAnswerCountByUserId(UserID);
+                viewModel.TagCount = GetTagCountByUserId(UserID);
             }
             return viewModel;
+        }
+        public int GetQuestionCountByUserId(int userId)
+        {
+            return iUsersRepo.GetQuestionCountByUserId(userId);
+        }
+        public int GetAnswerCountByUserId(int userId)
+        {
+            return iUsersRepo.GetAnswerCountByUserId(userId);
+        }
+        public int GetTagCountByUserId(int userId)
+        {
+            return iUsersRepo.GetTagCountByUserId(userId);
         }
     }
 }

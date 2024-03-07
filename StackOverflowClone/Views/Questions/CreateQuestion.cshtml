@@ -28,27 +28,27 @@
     </div>
     <div class="row mt-5">
         <div class="col-12 col-sm-9">
-            <form class="mb-5" novalidate="novalidate" action="/questions/create" method="post">
+            <form class="mb-5" novalidate="novalidate" action="/questions/createquestion" method="post">
                 @Html.AntiForgeryToken()
                 <div class="content-ask-question">
                     <div class="d-flex flex-column align-items-start mb-4">
                         <h4 class="font-black15 fw-bold">Title</h4>
                         <span class="font-tag12 mb-2">Be specific and imagine you’re asking a question to another person.</span>
-                        <input type="text" class="form-control font-tag-black600" id="display-name" required="required" autofocus="autofocus" placeholder="e.g Is there an R function for finding index of an element in a vetor?">
+                        <input type="text" class="form-control font-tag-black600" id="display-name" name="QuestionName" required="required" autofocus="autofocus" placeholder="e.g Is there an R function for finding index of an element in a vetor?">
                     </div>
                 </div>
                 <div class="content-ask-question">
                     <div class="d-flex flex-column align-items-start mb-4">
                         <h4 class="font-black15 fw-bold">What are the details of your problem?</h4>
                         <span class="font-tag12 mb-2">Introduce the problem and expand on what you put in the title. Minimum 20 characrters.</span>
-                        <textarea type="text" class="form-control font-tag-black600" required="required" rows="10"></textarea>
+                        <textarea type="text" class="form-control font-tag-black600" name="QuestionContent" required="required" rows="10"></textarea>
                     </div>
                 </div>
                 <div class="content-ask-question">
                     <div class="d-flex flex-column align-items-start mb-4">
                         <h4 class="font-black15 fw-bold">Tags</h4>
                         <span class="font-tag12 mb-2">Add up to a tag to describe what your question is about. Start typing to see suggestions.</span>
-                        <input type="text" class="form-control font-tag-black600" id="display-name" placeholder="e.g Is there an R function for finding index of an element in a vetor?">
+                        @*<input type="text" class="form-control font-tag-black600" id="display-name" placeholder="e.g Is there an R function for finding index of an element in a vetor?">*@
                         <select class="form-select form-control font-tag-black600" name="CategoryID" aria-label="Select tag" id="tags">
                             <option selected>Select topic</option>
                             @foreach(var i in ViewBag.Categories)

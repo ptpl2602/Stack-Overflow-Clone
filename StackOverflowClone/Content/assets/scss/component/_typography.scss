@@ -99,6 +99,14 @@
     color: $black !important;
 }
 
+.fc-red-hover {
+    color: $red !important;
+
+    &:hover {
+        color: $red-dark !important;
+    }
+}
+
 #active {
     color: $gray-focus !important;
     font-weight: 700 !important;

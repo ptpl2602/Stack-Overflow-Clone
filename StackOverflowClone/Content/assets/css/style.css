@@ -497,6 +497,13 @@
   color: #242729 !important;
 }
 
+.fc-red-hover {
+  color: #c93332 !important;
+}
+.fc-red-hover:hover {
+  color: #9c2121 !important;
+}
+
 #active {
   color: #0c0d0e !important;
   font-weight: 700 !important;
@@ -1021,6 +1028,15 @@
 }
 
 #toggle-password {
+  position: absolute;
+  top: 4rem;
+  right: 1rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  z-index: 100;
+}
+
+#toggle-password2 {
   position: absolute;
   top: 4rem;
   right: 1rem;

@@ -22,6 +22,7 @@ namespace StackOverflowClone.ServiceLayer
         /*void SetAcceptedAnswer (int questionId, int answerId);*/
         List<QuestionViewModel> GetQuestions();
         QuestionViewModel GetQuestionById(int questionId, int UserId);
+        int GetUserIdByQuestionId(int questionId);
     }
     public class QuestionsService : IQuestionsService
     {
@@ -107,6 +108,10 @@ namespace StackOverflowClone.ServiceLayer
                 }
             }
             return viewModel;
+        }
+        public int GetUserIdByQuestionId(int questionId)
+        {
+            return iQuestionsRepo.GetUserIdByQuestionId(questionId);
         }
     }
 }

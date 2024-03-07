@@ -16,5 +16,8 @@ namespace StackOverflowClone.ViewModels
         public string Name { get; set; }
         public string PhoneNumber { get; set; }
         public bool IsAdmin { get; set; }
+        public int QuestionCount { get; set; }
+        public int AnswerCount { get; set; }
+        public int TagCount { get; set; }
     }
 }

@@ -17,8 +17,11 @@ namespace StackOverflowClone.Repositories
         List<User> GetUserByEmailAndPasswd(string email, string passwd);
         List<User> GetUserByEmail (string email);
 
-        List<User> GetUserByID(int id);
+        User GetUserByID(int id);
         int GetLatesUserID();
+        int GetQuestionCountByUserId (int userId);
+        int GetAnswerCountByUserId (int userId);
+        int GetTagCountByUserId (int userId);
     }
     public class UsersRepository : IUsersRepository
     {
@@ -84,10 +87,10 @@ namespace StackOverflowClone.Repositories
             return users;
         }
 
-        public List<User> GetUserByID(int id)
+        public User GetUserByID(int id)
         {
-            List<User> users = _dbContext.Users.Where(i => i.UserID == id).ToList();
-            return users;
+            User user = _dbContext.Users.Where(i => i.UserID == id).FirstOrDefault();
+            return user;
         }
 
         public int GetLatesUserID()
@@ -95,5 +98,23 @@ namespace StackOverflowClone.Repositories
             int userId = _dbContext.Users.Select(i => i.UserID).Max();
             return userId;
         }
+
+        public int GetQuestionCountByUserId(int userId)
+        {
+            return _dbContext.Questions.Count(i => i.UserID == userId);
+        }
+        public int GetAnswerCountByUserId(int userId)
+        {
+            return _dbContext.Answers.Count(i => i.UserID == userId);
+        }
+        public int GetTagCountByUserId (int userId)
+        {
+            var tagCount = _dbContext.Questions.Where(i => i.UserID == userId)
+                                               .Select(i => i.CategoryID)
+                                               .Distinct()
+                                               .Count();
+            return tagCount;
+        }
+
     }
 }
