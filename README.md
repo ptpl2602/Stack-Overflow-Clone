@@ -2,7 +2,7 @@
 
 The StackOverflow Clone project is a web application built on the model of Stack Overflow, where users can ask questions, answer questions, and engage with the community through similar functionalities as on Stack Overflow.
 
-## Project Structure (n-tier):
+## Project Structure (n-tier)
 The project follows an n-tier architecture, consisting of presentation layer (UI), service layer (business logic), repository layer (data access), and domain model layer (entities), ensuring separation of concerns and modularity.
 
 ## Tools Used in the Project
@@ -10,3 +10,10 @@ The project follows an n-tier architecture, consisting of presentation layer (UI
 * MS SQL 2019: Relational Database Management System (RDBMS) used to store and manage data.
 * WebCompiler Extension: Extension for Visual Studio to compile SCSS (Sassy CSS) files into regular CSS.
 * AutoMapper (Version 7.0.1): Library for object-to-object mapping in .NET projects.
+
+## Tech Stack
+
+* **Front-end:** `HTML`, `SASS/SCSS`, `Javascript` and `Bootstrap`
+* **Back-end:** `ASP.NET MVC`, `ASP.NET Web API`
+* **Databases:** `MS SQL`
+* **API testing used:** `Postman`
