@@ -17,6 +17,7 @@ namespace StackOverflowClone.Repositories
         void UpdateAnswertVotesCount(int answerId, int userId, int value);
         int GetVoteCountByAnswerId(int answerId);
         void AcceptAnswer(int answerId);
+        int GetQuestionIdForAnswer (int answerId);
         List<Answer> GetAnswersByQuestionId(int questionId);
         List<Answer> GetAnswersByAnswerId (int answerId);
     }
@@ -113,6 +114,14 @@ namespace StackOverflowClone.Repositories
 
                 iQuestionRepo.UpdateQuestionAnswersCount(answer.AnswerID, -1);
             }
+        }
+
+        public int GetQuestionIdForAnswer (int answerId)
+        {
+            var questionId = _dbContext.Answers.Where(i => i.AnswerID == answerId)
+                                                .Select(i => i.QuestionID)
+                                                .FirstOrDefault();
+            return questionId;
         }
 
         public void AcceptAnswer(int answerId)

@@ -18,6 +18,7 @@ namespace StackOverflowClone.ServiceLayer
         void UpdateAnswertVotesCount(int answerId, int userId, int value);
         int GetVoteCountByAnswerId (int answerId);
         void AcceptAnswer (int answerId);
+        int GetQuestionIdForAnswer(int answerId);
         List<AnswerViewModel> GetAnswersByQuestionId(int questionId);
         AnswerViewModel GetAnswersByAnswerId(int answerId);
     }
@@ -84,6 +85,11 @@ namespace StackOverflowClone.ServiceLayer
         public int GetVoteCountByAnswerId (int answerId)
         {
             return iAnswerRepo.GetVoteCountByAnswerId(answerId) ;
+        }
+
+        public int GetQuestionIdForAnswer(int answerId)
+        {
+            return iAnswerRepo.GetQuestionIdForAnswer(answerId) ;
         }
 
         public void AcceptAnswer(int answerId)

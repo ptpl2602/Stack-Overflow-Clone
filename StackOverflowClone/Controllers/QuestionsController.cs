@@ -113,5 +113,14 @@ namespace StackOverflowClone.Controllers
                 return View();
             }
         }
+
+/*        [HttpPost]
+        [ValidateAntiForgeryToken]*/
+        public ActionResult DeleteAnswer(int answerId)
+        {
+            int questionId = iAnswersService.GetQuestionIdForAnswer(answerId);
+            iAnswersService.DeleteAnswer(answerId);
+            return RedirectToAction("View", "Questions", new { id = questionId });
+        }
     }
 }

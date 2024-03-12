@@ -232,7 +232,8 @@
                             </div>
                             <div class="col-8 ms-4 mb-4 mt-2 p-0">
                                 <button class="font-gray13 btn-func-link button-edit mt-3 mb-2">Edit</button>
-                                <button class="font-gray13 fc-red-hover btn-func-link mt-3 mb-2">Delete</button>
+                                <input type="hidden" name="AnswerID" value="@Model.Answers[i].AnswerID" />
+                                <a href="@Url.Action("DeleteAnswer", "Questions", new { AnswerID = Model.Answers[i].AnswerID })" type="submit" class="font-gray13 fc-red-hover btn-func-link text-decoration-none mt-3 mb-2">Delete</a>
                                 <form class="needs-validation hidden mt-3" novalidate="novalidate" action="/questions/editanswer" method="post">
                                     <div class="col-12 mb-3">
                                         @Html.AntiForgeryToken()
